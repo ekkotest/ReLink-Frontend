@@ -2,6 +2,7 @@
 
 import Footer from '@/components/app/Footer';
 import Header from '@/components/app/Header';
+import UploadFile from '@/components/app/UploadFile';
 import ButtonLink from '@/components/links/ButtonLink';
 /**
  * SVGR Support
@@ -20,9 +21,10 @@ export default function HomePage() {
   return (
     <main>
       <Header></Header>
-      <section className='bg-white'>
+      <section className='bg-white '>
         <div className='layout relative flex min-h-screen flex-col items-center justify-center py-12 text-center'>
-          <ButtonLink className='mt-6' href='/components' variant='light'>
+          <UploadFile></UploadFile>
+          <ButtonLink className='mt-6 ' href='/components' variant='light'>
             See /components test page
           </ButtonLink>
         </div>
