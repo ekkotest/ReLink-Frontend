@@ -1,9 +1,9 @@
 'use client';
 
+import Link from 'next/link';
+
 import Footer from '@/components/app/Footer';
-import Header from '@/components/app/Header';
 import UploadFile from '@/components/app/UploadFile';
-import ButtonLink from '@/components/links/ButtonLink';
 /**
  * SVGR Support
  * Caveat: No React Props Type.
@@ -20,13 +20,10 @@ import ButtonLink from '@/components/links/ButtonLink';
 export default function HomePage() {
   return (
     <main>
-      <Header></Header>
       <section className='bg-white '>
         <div className='layout relative flex min-h-screen flex-col items-center justify-center py-12 text-center'>
           <UploadFile></UploadFile>
-          <ButtonLink className='mt-6 ' href='/components' variant='light'>
-            See /components test page
-          </ButtonLink>
+          <Link href='/graph'> See /components test page</Link>
         </div>
       </section>
       <Footer></Footer>
