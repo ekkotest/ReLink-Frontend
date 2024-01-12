@@ -1,7 +1,7 @@
-import { InboxOutlined } from '@ant-design/icons';
 import type { UploadFile, UploadProps } from 'antd';
-import { Button, message, Upload } from 'antd';
+import { message, Upload } from 'antd';
 import React, { useState } from 'react';
+import { AiOutlineInbox } from 'react-icons/ai';
 
 const { Dragger } = Upload;
 
@@ -32,26 +32,43 @@ export default function UploadFile() {
     console.log('test');
   };
   return (
-    <div className='p-12 border-solid border-character-disabled-amp-placeholder rounded border-2'>
-      <Dragger {...props}>
-        <div className='w-[759px] h-[340px] flex flex-col justify-center'>
-          <p className='ant-upload-drag-icon'>
-            <InboxOutlined />
-          </p>
-          <p className='ant-upload-text'>Drag & drop files or Browse</p>
-          <p className='ant-upload-hint'>Supported formates: PDF</p>
+    <>
+      <div className='WhiteBackground flex h-[50vh] w-full flex-col items-center justify-center gap-5 rounded-2xl border border-zinc-300 bg-white p-10'>
+        <div className='HeadingUpload flex items-start justify-start gap-2.5 px-2.5'>
+          <div className="ExtractDataFromPdfs font-['Public Sans'] text-center text-xl font-medium leading-7 text-stone-950">
+            Upload{' '}
+          </div>
         </div>
-      </Dragger>
-      <Button
-        type='primary'
-        className='w-[791px]'
-        onClick={handleUpload}
-        disabled={fileList.length === 0}
-        loading={uploading}
-        style={{ marginTop: 16 }}
-      >
-        {uploading ? 'Uploading' : 'Generate'}
-      </Button>
-    </div>
+        <div className='UploadFileArea flex h-[80%] w-full flex-col items-center justify-center gap-2.5 rounded-md  border-2 border-dashed border-sky-500/60'>
+          <AiOutlineInbox className='h-[72px] w-[72px] rounded-full bg-sky-500/5 p-3 text-6xl text-sky-500' />
+          <div className=' text-center'>
+            <span className="font-['Public Sans'] text-base font-normal leading-normal text-stone-950">
+              Drag & drop files or
+            </span>
+            <span className="font-['Public Sans'] text-base font-normal leading-normal text-zinc-800">
+              {' '}
+            </span>
+            <span className="font-['Public Sans'] text-base font-normal leading-normal text-sky-500 underline">
+              Browse
+            </span>
+          </div>
+          <div className=' gap-2.5 p-[5px]'>
+            <div className="font-['Public Sans'] text-center text-xs font-normal leading-tight text-neutral-400">
+              Supported formates: PDF
+            </div>
+          </div>
+        </div>
+
+        <button
+          className=' inline-flex h-11 w-full items-center justify-center gap-2.5 rounded-lg bg-sky-500 px-3.5 py-2 opacity-50'
+          disabled={fileList.length === 0}
+          onClick={handleUpload}
+        >
+          <div className="font-['Public Sans'] text-base font-medium leading-normal text-white">
+            Generate
+          </div>
+        </button>
+      </div>
+    </>
   );
 }

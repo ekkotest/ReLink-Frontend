@@ -4,6 +4,7 @@ import Link from 'next/link';
 
 import Footer from '@/components/app/Footer';
 import UploadFile from '@/components/app/UploadFile';
+import UploadPageTitle from '@/components/app/UploadPageTitle';
 /**
  * SVGR Support
  * Caveat: No React Props Type.
@@ -20,8 +21,9 @@ import UploadFile from '@/components/app/UploadFile';
 export default function HomePage() {
   return (
     <main>
-      <section className='bg-white '>
-        <div className='layout relative flex min-h-screen flex-col items-center justify-center py-12 text-center'>
+      <section className='flex flex-col items-center justify-center bg-white'>
+        <UploadPageTitle />
+        <div className='layout relative flex  flex-col items-center justify-center py-12 text-center'>
           <UploadFile></UploadFile>
           <Link href='/graph'> See /components test page</Link>
         </div>
