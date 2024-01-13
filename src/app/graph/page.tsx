@@ -1,136 +1,20 @@
 'use client';
+import {
+  Card,
+  CardBody,
+  Checkbox,
+  CheckboxGroup,
+  Pagination,
+  Tab,
+  Tabs,
+} from '@nextui-org/react';
+import { useState } from 'react';
+import { ReactFlowProvider } from 'reactflow';
 
-import { Pagination, Radio, RadioChangeEvent, Tabs, TabsProps } from 'antd';
-import ELK from 'elkjs/lib/elk.bundled.js';
-import React, { useCallback, useLayoutEffect, useState } from 'react';
-import ReactFlow, {
-  addEdge,
-  Panel,
-  ReactFlowProvider,
-  useEdgesState,
-  useNodesState,
-  useReactFlow,
-} from 'reactflow';
-
-import 'reactflow/dist/style.css';
-
-import { initialEdges, initialNodes } from './nodes-edges.js';
-
-const elk = new ELK();
-
-// Elk has a *huge* amount of options to configure. To see everything you can
-// tweak check out:
-//
-// - https://www.eclipse.org/elk/reference/algorithms.html
-// - https://www.eclipse.org/elk/reference/options.html
-const elkOptions = {
-  'elk.algorithm': 'layered',
-  'elk.layered.spacing.nodeNodeBetweenLayers': '100',
-  'elk.spacing.nodeNode': '80',
-};
-
-const getLayoutedElements = (nodes, edges, options = {}) => {
-  const isHorizontal = options?.['elk.direction'] === 'RIGHT';
-  const graph = {
-    id: 'root',
-    layoutOptions: options,
-    children: nodes.map((node) => ({
-      ...node,
-      // Adjust the target and source handle positions based on the layout
-      // direction.
-      targetPosition: isHorizontal ? 'left' : 'top',
-      sourcePosition: isHorizontal ? 'right' : 'bottom',
-
-      // Hardcode a width and height for elk to use when layouting.
-      width: 150,
-      height: 50,
-    })),
-    edges: edges,
-  };
-
-  return elk
-    .layout(graph)
-    .then((layoutedGraph) => ({
-      nodes: layoutedGraph.children.map((node) => ({
-        ...node,
-        // React Flow expects a position property on the node instead of `x`
-        // and `y` fields.
-        position: { x: node.x, y: node.y },
-      })),
-
-      edges: layoutedGraph.edges,
-    }))
-    .catch(console.error);
-};
-
-function LayoutFlow() {
-  const [nodes, setNodes, onNodesChange] = useNodesState([]);
-  const [edges, setEdges, onEdgesChange] = useEdgesState([]);
-  const { fitView } = useReactFlow();
-
-  const onConnect = useCallback(
-    (params) => setEdges((eds) => addEdge(params, eds)),
-    []
-  );
-  const onLayout = useCallback(
-    ({ direction = 'RIGHT', useInitialNodes = false }) => {
-      const opts = { 'elk.direction': direction, ...elkOptions };
-      const ns = useInitialNodes ? initialNodes : nodes;
-      const es = useInitialNodes ? initialEdges : edges;
-
-      getLayoutedElements(ns, es, opts).then(
-        ({ nodes: layoutedNodes, edges: layoutedEdges }) => {
-          setNodes(layoutedNodes);
-          setEdges(layoutedEdges);
-
-          window.requestAnimationFrame(() => fitView());
-        }
-      );
-    },
-    [nodes, edges]
-  );
-
-  // Calculate the initial layout on mount.
-  useLayoutEffect(() => {
-    onLayout({ direction: 'DOWN', useInitialNodes: true });
-  }, []);
-  const [value4, setValue4] = useState('Apple');
-  const optionsWithDisabled = [
-    { label: 'Diagram View', value: 'Apple' },
-    { label: 'Table View', value: 'Orange' },
-  ];
-  const onChange4 = ({ target: { value } }: RadioChangeEvent) => {
-    console.log('radio4 checked', value);
-    setValue4(value);
-  };
-  return (
-    <ReactFlow
-      nodes={nodes}
-      edges={edges}
-      onConnect={onConnect}
-      onNodesChange={onNodesChange}
-      onEdgesChange={onEdgesChange}
-      fitView
-    >
-      <Panel position='top-right'>
-        <Radio.Group
-          options={optionsWithDisabled}
-          onChange={onChange4}
-          value={value4}
-          optionType='button'
-          buttonStyle='solid'
-        />
-      </Panel>
-    </ReactFlow>
-  );
-}
-
+import LayoutFlow from '../../components/app/graph/DiagramView/DiagramView';
+import TableView from '../../components/app/graph/TableVIew/TableVIew';
 export default function GraphPage() {
-  const onChange = (key: string) => {
-    console.log(key);
-  };
-
-  const items: TabsProps['items'] = [
+  const items = [
     {
       key: '1',
       label: 'Concise',
@@ -147,19 +31,86 @@ export default function GraphPage() {
       children: 'Content of Tab Pane 3',
     },
   ];
+  const [value4, setValue4] = useState('graph');
+  const optionsWithDisabled = [
+    {
+      label: 'Diagram View',
+      value: 'graph',
+      render: () => (
+        <ReactFlowProvider>
+          <LayoutFlow />
+        </ReactFlowProvider>
+      ),
+    },
+    {
+      label: 'Table View',
+      value: 'tableView',
+      render: () => <TableView />,
+    },
+  ];
+  const variants = [
+    "solid",
+    "underlined",
+    "bordered",
+    "light",
+  ];
   return (
     <main>
-      <section>
-        <h4>
+      <section className='p-10'>
+        <div className=" font-['Public Sans'] text-2xl font-bold leading-loose text-neutral-800">
           Responsible Artificial Intelligence: Designing AI For Human Values
-        </h4>
-        <Tabs defaultActiveKey='1' items={items} onChange={onChange} />
-        <div style={{ height: '400px' }}>
-          <ReactFlowProvider>
-            <LayoutFlow />
-          </ReactFlowProvider>
         </div>
-        <Pagination defaultCurrent={1} total={50} />
+        <div className=' '>
+          <span className="font-['Public Sans'] text-base font-bold leading-normal text-black">
+            Summary：{' '}
+          </span>
+          <span className="font-['Public Sans'] text-sm font-normal leading-snug text-black">
+            The degradation problem in plain networks, where deeper networks
+            have higher training error, is attributed to optimization
+            difficulties rather than. The degradation problem in plain networks,
+            where deeper networks have higher training error, is attributed to
+            optimization difficulties rather than...
+          </span>
+          <span className="font-['Public Sans'] text-sm font-normal leading-snug text-sky-500">
+            Expand
+          </span>
+          <span className="font-['Public Sans'] text-sm font-normal leading-snug text-black">
+            {' '}
+          </span>
+        </div>
+          <Tabs  variant='underlined' aria-label="Tabs variants">
+            <Tab key="photos" title="Photos"/>
+            <Tab key="music" title="Music"/>
+            <Tab key="videos" title="Videos"/>
+          </Tabs>
+        <div className='flex w-full flex-col'>
+          <Tabs aria-label='Options base' items={[123]} className='tabContent'>
+            {optionsWithDisabled.map((it) => {
+              return (
+                <Tab key={it.value} title={it.label}>
+                  <Card>
+                    <CardBody>
+                      <div style={{ height: '400px' }}>{it.render()}</div>
+                    </CardBody>
+                  </Card>
+                </Tab>
+              );
+            })}
+          </Tabs>
+          <CheckboxGroup
+            orientation='horizontal'
+            color='secondary'
+            defaultValue={['buenos-aires', 'san-francisco']}
+          >
+            <Checkbox value='buenos-aires'>Buenos Aires</Checkbox>
+            <Checkbox value='sydney'>Sydney</Checkbox>
+            <Checkbox value='san-francisco'>San Francisco</Checkbox>
+            <Checkbox value='london'>London</Checkbox>
+            <Checkbox value='tokyo'>Tokyo</Checkbox>
+          </CheckboxGroup>
+        </div>
+
+        <Pagination total={10} initialPage={1} />
       </section>
     </main>
   );

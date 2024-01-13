@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import LoginModal from './LoginModal/LoginModal';
 
 const navigation = [
   { name: 'Product', href: '#' },
@@ -81,6 +82,7 @@ export default function Example() {
           />
         </div>
       </div>
+      {/* <LoginModal></LoginModal> */}
     </div>
   );
 }
