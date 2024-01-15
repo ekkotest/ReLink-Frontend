@@ -21,9 +21,9 @@ export default function Example() {
   };
   return (
     <div>
-      <header className='fixed backdrop-blur border-b inset-x-0 top-0 z-50   '>
+      <header className='fixed inset-x-0 top-0 z-50 border-b backdrop-blur   '>
         <nav
-          className='flex items-center justify-between px-12 w-full  h-[80px]   '
+          className='flex h-[80px] w-full items-center justify-between  px-12   '
           aria-label='Global'
         >
           <div className='flex lg:flex-1'>
@@ -56,7 +56,7 @@ export default function Example() {
                   alt=''
                 ></Image>
               ))}
-              <div className='flex gap-2 items-center' onClick={handleSignIn}>
+              <div className='flex items-center gap-2' onClick={handleSignIn}>
                 {loginStatus ? (
                   <>
                     <Image

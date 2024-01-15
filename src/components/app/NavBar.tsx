@@ -17,11 +17,11 @@ export default function NavBar() {
     },
   ];
   return (
-    <div className='w-[222px]  bg-white border-r-1  z-10 h-[calc(100vh-81px)]'>
+    <div className='border-r-1  z-10 h-[calc(100vh-81px)]  w-[222px] bg-white'>
       {navList.map((nav) => (
         <div
           key={nav.id}
-          className='flex items-center justify-between w-[222px] text-xs px-5 py-2'
+          className='flex w-[222px] items-center justify-between px-5 py-2 text-xs'
         >
           <div className='w-30'>{nav.text}</div>
           <Image

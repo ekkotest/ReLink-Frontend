@@ -7,7 +7,7 @@ export default memo((props: NodeProps) => {
     <>
       <Handle
         type='source'
-        className='opacity-0 !right-0'
+        className='!right-0 opacity-0'
         position={Position.Right}
         style={{ background: '#555' }}
         isConnectable={props.isConnectable}
@@ -15,12 +15,12 @@ export default memo((props: NodeProps) => {
       <div
         className={`${
           props.selected ? 'border-sky-500' : 'border-zinc-300'
-        } DagCard w-72 h-36 px-3.5 py-4 bg-white rounded-lg border  flex-col justify-start items-start gap-3 inline-flex`}
+        } DagCard inline-flex h-36 w-72 flex-col items-start justify-start gap-3  rounded-lg border bg-white px-3.5 py-4`}
       >
-        <div className='Frame39642 justify-center items-center gap-44 inline-flex'>
-          <div className='Tag w-16 h-5 flex-col justify-start items-start inline-flex'>
-            <div className='TagRed w-16 px-2 py-px bg-lime-50 rounded flex-col justify-center items-start gap-2.5 flex'>
-              <div className="Hypothesis text-lime-600 text-xs font-normal font-['Public Sans'] leading-tight">
+        <div className='Frame39642 inline-flex items-center justify-center gap-44'>
+          <div className='Tag inline-flex h-5 w-16 flex-col items-start justify-start'>
+            <div className='TagRed flex w-16 flex-col items-start justify-center gap-2.5 rounded bg-lime-50 px-2 py-px'>
+              <div className="Hypothesis font-['Public Sans'] text-xs font-normal leading-tight text-lime-600">
                 Experiment
               </div>
             </div>
@@ -28,7 +28,7 @@ export default memo((props: NodeProps) => {
           <Image src='/svg/graph/Star.svg' width={14} height={14} alt='' />
           <div />
         </div>
-        <div className="TheDegradationProblemInPlainNetworksWhereDeeperNetworksHaveHigherTrainingErrorIsAttributedToOptimizationDifficultiesRatherThanVanishingGradients w-64 h-20 text-neutral-800 text-xs font-medium font-['Public Sans'] leading-tight">
+        <div className="TheDegradationProblemInPlainNetworksWhereDeeperNetworksHaveHigherTrainingErrorIsAttributedToOptimizationDifficultiesRatherThanVanishingGradients font-['Public Sans'] h-20 w-64 text-xs font-medium leading-tight text-neutral-800">
           The degradation problem in plain networks, where deeper networks have
           higher training error, is attributed to optimization difficulties
           rather than vanishing gradients...More
@@ -36,7 +36,7 @@ export default memo((props: NodeProps) => {
       </div>
       <Handle
         type='target'
-        className='opacity-0 !left-0'
+        className='!left-0 opacity-0'
         position={Position.Left}
         id='b'
         isConnectable={props.isConnectable}

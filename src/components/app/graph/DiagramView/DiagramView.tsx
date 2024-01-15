@@ -35,7 +35,7 @@ const elkOptions = {
 
 const getLayoutedElements = (
   nodes: Node[],
-  edges: Edge[],
+  edges: any[],
   options: ElkNode['layoutOptions'] = {}
 ) => {
   const isHorizontal = options['elk.direction'] === 'RIGHT';
@@ -73,7 +73,7 @@ const getLayoutedElements = (
 
 export default function LayoutFlow() {
   const [nodes, setNodes, onNodesChange] = useNodesState<Node[]>([]);
-  const [edges, setEdges, onEdgesChange] = useEdgesState<Edge>([]);
+  const [edges, setEdges, onEdgesChange] = useEdgesState<Edge[]>([]);
   const { fitView } = useReactFlow();
 
   const onConnect = useCallback(
@@ -88,8 +88,8 @@ export default function LayoutFlow() {
 
       getLayoutedElements(ns, es, opts).then(
         ({ nodes: layoutedNodes, edges: layoutedEdges }) => {
-          setNodes(layoutedNodes);
-          setEdges(layoutedEdges);
+          setNodes(layoutedNodes as Node[]);
+          setEdges(layoutedEdges as any[]);
 
           window.requestAnimationFrame(() => fitView());
         }
@@ -109,7 +109,7 @@ export default function LayoutFlow() {
   }, []);
 
   return (
-    <div className='h-[100%] relative'>
+    <div className='relative h-[100%]'>
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -119,7 +119,7 @@ export default function LayoutFlow() {
         onEdgesChange={onEdgesChange}
         fitView
       ></ReactFlow>
-      <div className='absolute right-0 -top-12 z-10'>
+      <div className='absolute -top-12 right-0 z-10'>
         {selectedNodes && <DiagramDetail></DiagramDetail>}
       </div>
     </div>

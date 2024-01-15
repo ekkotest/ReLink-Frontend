@@ -10,5 +10,5 @@ export default {
     extend: {},
   },
   darkMode: 'class',
-  plugins: [require('@tailwindcss/forms'), require('daisyui'),nextui()],
+  plugins: [require('@tailwindcss/forms'), require('daisyui'), nextui()],
 } satisfies Config;

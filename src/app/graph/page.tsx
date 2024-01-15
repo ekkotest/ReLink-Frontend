@@ -82,7 +82,7 @@ export default function GraphPage() {
           </Tabs>
         </div>
         <div className='Rectangle1204  rounded bg-[#f1f1f1]'>
-          <div className='flex w-full flex-row gap-10 items-center py-2 pl-20'>
+          <div className='flex w-full flex-row items-center gap-10 py-2 pl-20'>
             <Tabs
               aria-label='Options base'
               className='tabContent'
