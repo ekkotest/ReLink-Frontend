@@ -20,16 +20,37 @@ export default function App() {
       key: 1,
       title: 'Locate in File',
       startContent: <Image src='/svg/graph/Pushpin.svg' alt='' />,
+      content: () => (
+        <div className='p-3'>
+          <div> Question 1.</div>
+
+          <div>
+            {' '}
+            <Image
+              src='/svg/graph/Star.svg'
+              width={14}
+              height={14}
+              alt=''
+            />{' '}
+          </div>
+          <div>
+            Place holder here, replace before launch product;Place holder here,
+            replace before launch product?
+          </div>
+        </div>
+      ),
     },
     {
       key: 2,
       title: 'Elaborate',
       startContent: <Image src='/svg/graph/UsergroupAdd.svg' alt='' />,
+      content: <Elaborate></Elaborate>,
     },
     {
       key: 3,
       title: 'Raise Questions',
       startContent: <Image src='/svg/graph/Bulb.svg' alt='' />,
+      content: 'dsasa',
     },
   ];
   return (
@@ -51,10 +72,45 @@ export default function App() {
             startContent={it.startContent}
             title={<div className='w-[430px]'>{it.title}</div>}
           >
-            {defaultContent}
+            {it.content}
           </AccordionItem>
         ))}
       </Accordion>
+    </div>
+  );
+}
+
+function Elaborate() {
+  const list = [
+    {
+      title: 'Question  1.',
+      content:
+        '  Place holder here, replace before launch product;Place holder here, replace before launch product?',
+    },
+    {
+      title: 'Question  2.',
+      content:
+        '  Place holder here, replace before launch product;Place holder here, replace before launch product?',
+    },
+    {
+      title: 'Question  3.',
+      content:
+        '  Place holder here, replace before launch product;Place holder here, replace before launch product?',
+    },
+  ];
+  return (
+    <div className='flex flex-col gap-2 justify-evenly my-1'>
+      {list.map((it) => (
+        <div key={it.title} className='p-2 rounded-md border-1 '>
+          <div className='flex justify-between '>
+            <div>{it.title}</div>
+            <div>
+              <Image src='/svg/graph/Star.svg' width={14} height={14} alt='' />
+            </div>
+          </div>
+          <div>{it.content}</div>
+        </div>
+      ))}
     </div>
   );
 }

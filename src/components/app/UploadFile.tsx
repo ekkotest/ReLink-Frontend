@@ -1,4 +1,3 @@
-import type { UploadFile } from 'antd';
 import React, { useCallback, useRef, useState } from 'react';
 import { AiOutlineInbox } from 'react-icons/ai';
 
@@ -63,7 +62,7 @@ const UploadFileArea: React.FC = () => {
 
 export default function UploadFile() {
   const [uploading, setUploading] = useState(false);
-  const [fileList, setFileList] = useState<UploadFile[]>([]);
+  const [fileList, setFileList] = useState([]);
   const handleUpload = () => {
     console.log('test');
   };
