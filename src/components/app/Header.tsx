@@ -1,33 +1,39 @@
 'use client';
+import { Button, useDisclosure } from '@nextui-org/react';
+import Image from 'next/image';
 import { useState } from 'react';
-import LoginModal from './LoginModal/LoginModal';
+
+import LoginModal from '@/components/app/LoginModal/LoginModal';
 
 const navigation = [
-  { name: 'Product', href: '#' },
-  { name: 'Features', href: '#' },
-  { name: 'Marketplace', href: '#' },
-  { name: 'Company', href: '#' },
+  { name: 'Product', src: '/svg/header/language.svg' },
+  { name: 'Product', src: '/svg/header/wrapper.svg' },
+  { name: 'Product', src: '/svg/header/Vector.svg' },
 ];
 
 export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const [loginStatus, setloginStatus] = useState(false);
+  const handleSignIn = () => {
+    onOpen();
+    setloginStatus(!loginStatus);
+  };
   return (
     <div>
-      <header className='fixed backdrop-blur border-b inset-x-0 top-0 z-50'>
+      <header className='fixed backdrop-blur border-b inset-x-0 top-0 z-50   '>
         <nav
-          className='flex items-center justify-between p-6 lg:px-8'
+          className='flex items-center justify-between px-12 w-full  h-[80px]   '
           aria-label='Global'
         >
           <div className='flex lg:flex-1'>
-            <a href='#' className='-m-1.5 p-1.5'>
-              <span className='sr-only'>Your Company</span>
-              <img
-                className='h-8 w-auto'
-                src='https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600'
-                alt=''
-              />
-            </a>
+            <Image
+              src='/svg/header/relink.svg'
+              width={30}
+              height={30}
+              alt=''
+            ></Image>
+            <span className='ml-4 '>RELINK</span>
           </div>
           <div className='flex lg:hidden'>
             <button
@@ -40,23 +46,51 @@ export default function Example() {
           </div>
 
           <div className='hidden lg:flex lg:flex-1 lg:justify-end'>
-            <div className='hidden lg:flex lg:gap-x-12'>
+            <div className='hidden lg:flex lg:gap-x-6'>
               {navigation.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className='text-sm font-semibold leading-6 text-gray-900'
-                >
-                  {item.name}
-                </a>
+                <Image
+                  key={item.src}
+                  src={item.src}
+                  width={15}
+                  height={15}
+                  alt=''
+                ></Image>
               ))}
+              <div className='flex gap-2 items-center' onClick={handleSignIn}>
+                {loginStatus ? (
+                  <>
+                    <Image
+                      src='/svg/header/female.svg'
+                      width={30}
+                      height={30}
+                      alt=''
+                    ></Image>
+                    William Wang
+                  </>
+                ) : (
+                  <>
+                    <div onClick={handleSignIn}>Login in</div>
+                    <Button
+                      color='primary'
+                      variant='solid'
+                      onClick={handleSignIn}
+                    >
+                      Sign up
+                    </Button>
+                  </>
+                )}
+              </div>
             </div>
           </div>
         </nav>
       </header>
-
-      <div className='relative isolate px-6 pt-20 lg:px-8'>
-        <div
+      <LoginModal
+        isOpen={isOpen}
+        onOpen={onOpen}
+        onOpenChange={onOpenChange}
+      ></LoginModal>
+      <div className='relative isolate px-6 pt-[80px] lg:px-8'>
+        {/* <div
           className='absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80'
           aria-hidden='true'
         >
@@ -80,9 +114,8 @@ export default function Example() {
                 'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
             }}
           />
-        </div>
+        </div> */}
       </div>
-      {/* <LoginModal></LoginModal> */}
     </div>
   );
 }

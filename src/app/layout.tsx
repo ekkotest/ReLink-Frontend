@@ -6,6 +6,7 @@ import '@/styles/globals.css';
 import '@/styles/colors.css';
 
 import Header from '@/components/app/Header';
+import NavBar from '@/components/app/NavBar';
 
 import { siteConfig } from '@/constant/config';
 
@@ -60,7 +61,10 @@ export default function RootLayout({
     <html>
       <body>
         <Header></Header>
-        {children}
+        <div className='flex'>
+          <NavBar></NavBar>
+          {children}
+        </div>
       </body>
     </html>
   );
