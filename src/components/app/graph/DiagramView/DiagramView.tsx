@@ -1,10 +1,13 @@
+import { ElkNode } from 'elkjs';
 import ELK from 'elkjs/lib/elk.bundled.js';
-import React, { useCallback, useLayoutEffect } from 'react';
+import React, { useCallback, useLayoutEffect, useState } from 'react';
 import ReactFlow, {
   addEdge,
-  Panel,
+  Edge,
+  Node,
   useEdgesState,
   useNodesState,
+  useOnSelectionChange,
   useReactFlow,
 } from 'reactflow';
 
@@ -12,7 +15,7 @@ import 'reactflow/dist/style.css';
 
 import CutstomNode from './CutstomNode.tsx';
 import DiagramDetail from './DiagramDetail.tsx';
-import { initialEdges, initialNodes } from './nodes-edges.js';
+import { initialEdges, initialNodes } from './nodes-edges.ts';
 
 const elk = new ELK();
 const nodeTypes = {
@@ -30,9 +33,13 @@ const elkOptions = {
   'elk.spacing.nodeNode': '80',
 };
 
-const getLayoutedElements = (nodes, edges, options = {}) => {
-  const isHorizontal = options?.['elk.direction'] === 'RIGHT';
-  const graph = {
+const getLayoutedElements = (
+  nodes: Node[],
+  edges: Edge[],
+  options: ElkNode['layoutOptions'] = {}
+) => {
+  const isHorizontal = options['elk.direction'] === 'RIGHT';
+  const graph: ElkNode = {
     id: 'root',
     layoutOptions: options,
     children: nodes.map((node) => ({
@@ -52,7 +59,7 @@ const getLayoutedElements = (nodes, edges, options = {}) => {
   return elk
     .layout(graph)
     .then((layoutedGraph) => ({
-      nodes: layoutedGraph.children.map((node) => ({
+      nodes: layoutedGraph?.children?.map((node) => ({
         ...node,
         // React Flow expects a position property on the node instead of `x`
         // and `y` fields.
@@ -61,12 +68,12 @@ const getLayoutedElements = (nodes, edges, options = {}) => {
 
       edges: layoutedGraph.edges,
     }))
-    .catch(console.error);
+    .catch();
 };
 
 export default function LayoutFlow() {
-  const [nodes, setNodes, onNodesChange] = useNodesState([]);
-  const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+  const [nodes, setNodes, onNodesChange] = useNodesState<Node[]>([]);
+  const [edges, setEdges, onEdgesChange] = useEdgesState<Edge>([]);
   const { fitView } = useReactFlow();
 
   const onConnect = useCallback(
@@ -90,25 +97,31 @@ export default function LayoutFlow() {
     },
     [nodes, edges]
   );
-
+  const [selectedNodes, setSelectedNodes] = useState<Node | null>(null);
+  useOnSelectionChange({
+    onChange: ({ nodes, edges }) => {
+      setSelectedNodes(nodes[0]);
+    },
+  });
   // Calculate the initial layout on mount.
   useLayoutEffect(() => {
     onLayout({ direction: 'RIGHT', useInitialNodes: true });
   }, []);
 
   return (
-    <ReactFlow
-      nodes={nodes}
-      edges={edges}
-      nodeTypes={nodeTypes}
-      onConnect={onConnect}
-      onNodesChange={onNodesChange}
-      onEdgesChange={onEdgesChange}
-      fitView
-    >
-      <Panel position='top-right'>
-        <DiagramDetail></DiagramDetail>
-      </Panel>
-    </ReactFlow>
+    <div className='h-[100%] relative'>
+      <ReactFlow
+        nodes={nodes}
+        edges={edges}
+        nodeTypes={nodeTypes}
+        onConnect={onConnect}
+        onNodesChange={onNodesChange}
+        onEdgesChange={onEdgesChange}
+        fitView
+      ></ReactFlow>
+      <div className='absolute right-0 -top-12 z-10'>
+        {selectedNodes && <DiagramDetail></DiagramDetail>}
+      </div>
+    </div>
   );
 }
