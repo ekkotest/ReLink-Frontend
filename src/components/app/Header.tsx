@@ -21,7 +21,7 @@ export default function Example() {
   };
   return (
     <div>
-      <header className='fixed inset-x-0 top-0 z-50 border-b backdrop-blur   '>
+      <header className='fixed inset-x-0 top-0 z-50 border-b shadow  backdrop-blur '>
         <nav
           className='flex h-[80px] w-full items-center justify-between  px-12   '
           aria-label='Global'

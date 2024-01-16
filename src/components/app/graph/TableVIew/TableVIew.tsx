@@ -1,118 +1,31 @@
 import Image from 'next/image';
 
 export default function TableView() {
+  const list = [1, 2, 34, 5, , 4, 6, 7, 8, 9, 10, 23, 32, 424, 34, 34, 324, 5];
+  const test = [1, 2, 3, 4, 5];
   return (
-    <div>
-      <div className='Frame39669 inline-flex h-96 w-96 items-start justify-start gap-2.5'>
-        <div className='ComponentsTableColumnText inline-flex w-64 flex-col items-center justify-center gap-2.5 bg-zinc-100 pb-5'>
-          <div className='TableHeaderDefault flex h-14 flex-col items-start justify-center self-stretch border px-4 py-1'>
-            <div className='Content inline-flex items-center justify-center py-2.5'>
-              <div className='Tag inline-flex flex-col items-start justify-start'>
-                <div className='TagRed flex w-24 flex-col items-start justify-center gap-2.5 rounded bg-rose-50 bg-opacity-0 px-2 py-px'>
-                  <div className="Hypothesis font-['Public Sans'] text-sm font-medium leading-snug text-neutral-800">
-                    Hypothesis
-                  </div>
-                </div>
+    <div className='h-[500px]gap-5 flex overflow-scroll'>
+      {list.map((it) => (
+        <div
+          key={it}
+          className='bg-rose-90 inline-block   w-[200px] rounded border bg-opacity-0 p-5'
+        >
+          <div className='h-10'>Hypothesis</div>
+          {test.map((it) => (
+            <div
+              key={it}
+              className='mt-5 flex items-start rounded  border-zinc-300 bg-white p-3'
+            >
+              <div className='w-[161px]'>
+                The degradation problem in plain networks, where deeper networks
+                have higher training error, is attributed to optimization
+                difficulties rather than.
               </div>
+              <Image src='/svg/graph/Star.svg' width={14} height={14} alt='' />
             </div>
-            <div className='LineWrapper inline-flex w-56 items-center justify-center'>
-              <div className='Divider inline-flex shrink grow basis-0 flex-col items-center justify-center gap-2.5' />
-            </div>
-          </div>
-          <div className='TableCellText flex h-40 flex-col items-start justify-start self-stretch pl-3.5 pr-4'>
-            <div className='DagCard flex flex-col items-start justify-start gap-3 rounded-lg border border-zinc-300 bg-white px-3.5 py-4'>
-              <div className='Frame39672 inline-flex items-start justify-start gap-3'>
-                <div className="TheDegradationProblemInPlainNetworksWhereDeeperNetworksHaveHigherTrainingErrorIsAttributedToOptimizationDifficultiesRatherThan font-['Public Sans'] w-40 text-xs font-medium leading-tight text-neutral-800">
-                  The degradation problem in plain networks, where deeper
-                  networks have higher training error, is attributed to
-                  optimization difficulties rather than.
-                </div>
-                <div className='Frame39642 flex items-center justify-center gap-44'>
-                  <Image
-                    src='/svg/graph/Star.svg'
-                    width={14}
-                    height={14}
-                    alt=''
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
-        <div className='ComponentsTableColumnText inline-flex w-64 flex-col items-center justify-center gap-2.5 bg-zinc-100 pb-5'>
-          <div className='TableHeaderDefault flex h-14 flex-col items-start justify-center self-stretch border px-4 py-1'>
-            <div className='Content inline-flex items-center justify-center py-2.5'>
-              <div className='Tag inline-flex flex-col items-start justify-start'>
-                <div className='TagRed flex w-24 flex-col items-start justify-center gap-2.5 rounded bg-rose-50 bg-opacity-0 px-2 py-px'>
-                  <div className="Hypothesis font-['Public Sans'] text-sm font-medium leading-snug text-neutral-800">
-                    Observation
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className='LineWrapper inline-flex w-56 items-center justify-center'>
-              <div className='Divider inline-flex shrink grow basis-0 flex-col items-center justify-center gap-2.5' />
-            </div>
-          </div>
-          <div className='TableCellText flex h-40 flex-col items-start justify-start self-stretch pl-3.5 pr-4'>
-            <div className='DagCard flex flex-col items-start justify-start gap-3 rounded-lg border border-zinc-300 bg-white px-3.5 py-4'>
-              <div className='Frame39672 inline-flex items-start justify-start gap-3'>
-                <div className="TheDegradationProblemInPlainNetworksWhereDeeperNetworksHaveHigherTrainingErrorIsAttributedToOptimizationDifficultiesRatherThan font-['Public Sans'] w-40 text-xs font-medium leading-tight text-neutral-800">
-                  The degradation problem in plain networks, where deeper
-                  networks have higher training error, is attributed to
-                  optimization difficulties rather than.
-                </div>
-                <div className='Frame39642 flex items-center justify-center gap-44'>
-                  <Image
-                    src='/svg/graph/Star.svg'
-                    width={14}
-                    height={14}
-                    alt=''
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className='TableCellText flex h-40 flex-col items-start justify-start self-stretch pl-3.5 pr-4'>
-            <div className='DagCard flex flex-col items-start justify-start gap-3 rounded-lg border border-zinc-300 bg-white px-3.5 py-4'>
-              <div className='Frame39672 inline-flex items-start justify-start gap-3'>
-                <div className="TheDegradationProblemInPlainNetworksWhereDeeperNetworksHaveHigherTrainingErrorIsAttributedToOptimizationDifficultiesRatherThan font-['Public Sans'] w-40 text-xs font-medium leading-tight text-neutral-800">
-                  The degradation problem in plain networks, where deeper
-                  networks have higher training error, is attributed to
-                  optimization difficulties rather than.
-                </div>
-                <div className='Frame39642 flex items-center justify-center gap-44'>
-                  <Image
-                    src='/svg/graph/Star.svg'
-                    width={14}
-                    height={14}
-                    alt=''
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className='TableCellText flex h-40 flex-col items-start justify-start self-stretch pl-3.5 pr-4'>
-            <div className='DagCard flex flex-col items-start justify-start gap-3 rounded-lg border border-zinc-300 bg-white px-3.5 py-4'>
-              <div className='Frame39672 inline-flex items-start justify-start gap-3'>
-                <div className="TheDegradationProblemInPlainNetworksWhereDeeperNetworksHaveHigherTrainingErrorIsAttributedToOptimizationDifficultiesRatherThan font-['Public Sans'] w-40 text-xs font-medium leading-tight text-neutral-800">
-                  The degradation problem in plain networks, where deeper
-                  networks have higher training error, is attributed to
-                  optimization difficulties rather than.
-                </div>
-                <div className='Frame39642 flex items-center justify-center gap-44'>
-                  <Image
-                    src='/svg/graph/Star.svg'
-                    width={14}
-                    height={14}
-                    alt=''
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      ))}
     </div>
   );
 }
