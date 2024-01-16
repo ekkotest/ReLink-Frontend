@@ -1,11 +1,3 @@
-/*
- * @Author: error: error: git config user.name & please set dead value or install git && error: git config user.email & please set dead value or install git & please set dead value or install git
- * @Date: 2024-01-14 13:44:32
- * @LastEditors: error: error: git config user.name & please set dead value or install git && error: git config user.email & please set dead value or install git & please set dead value or install git
- * @LastEditTime: 2024-01-14 14:34:39
- * @FilePath: /ReLink-Frontend/src/components/app/graph/DiagramView/nodes-edges.ts
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- */
 import { Edge, MarkerType } from 'reactflow';
 import { Node } from 'reactflow';
 
@@ -16,6 +8,10 @@ const edgeOptions = {
     type: MarkerType.ArrowClosed,
     width: 15,
     height: 15,
+  },
+  type: 'smoothstep',
+  pathOptions: {
+    borderRadius: 100,
   },
 };
 export const initialNodes: Node[] = [
@@ -61,12 +57,12 @@ export const initialNodes: Node[] = [
     data: { label: 'node 3' },
     position,
   },
-  {
-    id: '4',
-    type: 'CutstomNode',
-    data: { label: 'node 4' },
-    position,
-  },
+  // {
+  //   id: '4',
+  //   type: 'CutstomNode',
+  //   data: { label: 'node 4' },
+  //   position,
+  // },
   {
     id: '5',
     type: 'CutstomNode',
@@ -89,7 +85,8 @@ export const initialEdges: Edge[] = [
   { id: 'e22b', source: '2', target: '2b', ...edgeOptions },
   { id: 'e22c', source: '2', target: '2c', ...edgeOptions },
   { id: 'e2c2d', source: '2c', target: '2d', ...edgeOptions },
-  { id: 'e45', source: '4', target: '5', ...edgeOptions },
+  { id: 'e45', source: '1', target: '5', ...edgeOptions },
   { id: 'e56', source: '5', target: '6', ...edgeOptions },
   { id: 'e57', source: '5', target: '7', ...edgeOptions },
+  // { id: 'e571', source: '3', target: '7', ...edgeOptions },
 ];

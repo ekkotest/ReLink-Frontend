@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
 export default function TableView() {
-  const list = [1, 2, 34, 5, , 4, 6, 7, 8, 9, 10, 23, 32, 424, 34, 34, 324, 5];
+  const list = [1, 2, 34, 5, 4, 6, 7, 8, 9, 10, 23, 32, 424, 34, 34, 324, 5];
   const test = [1, 2, 3, 4, 5];
   return (
     <div className='h-[500px]gap-5 flex overflow-scroll'>

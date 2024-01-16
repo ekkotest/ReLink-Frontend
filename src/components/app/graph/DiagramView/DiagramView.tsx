@@ -30,7 +30,14 @@ const nodeTypes = {
 const elkOptions = {
   'elk.algorithm': 'layered',
   'elk.layered.spacing.nodeNodeBetweenLayers': '100',
-  'elk.spacing.nodeNode': '80',
+  'elk.spacing.nodeNode': ' 80',
+  // 'elk.nodeLabels.placement': 'INSIDE V_CENTER H_RIGHT',
+  // 'elk.direction': 'RIGTH',
+  // nodeLayering: 'INTERACTIVE',
+  // 'org.eclipse.elk.edgeRouting': 'ORTHOGONAL',
+  // 'elk.layered.unnecessaryBendpoints': 'true',
+  // 'elk.layered.spacing.edgeNodeBetweenLayers': '120',
+  'org.eclipse.elk.layered.nodePlacement.bk.fixedAlignment': 'BALANCED',
 };
 
 const getLayoutedElements = (
