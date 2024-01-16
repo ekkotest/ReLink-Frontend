@@ -1,21 +1,21 @@
 export default function Example() {
   return (
-    <div className='mx-auto bg-day-2  p-10  '>
+    <div className='bg-day-2 mx-auto  p-10  '>
       <div className='text-center'>
-        <a className='text-base text-blue-6 font-bold tracking-tight   '>
+        <a className='text-blue-6 text-base font-bold tracking-tight   '>
           Relink
         </a>
-        <h1 className='text-4xl text-day-11 font-bold tracking-tight text-gray-900 '>
+        <h1 className='text-day-11 text-4xl font-bold tracking-tight text-gray-900 '>
           About us
         </h1>
-        <p className='mt-6 text-lg leading-8 text-character-secondary'>
+        <p className='text-character-secondary mt-6 text-lg leading-8'>
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry's standard dummy text ever
           since the 1500s, when an unknown printer took a galley of type and
           scrambled it to make a type specimen book. It has survived not only
           five centuries,
         </p>
-        <p className='mt-6 text-lg leading-8 text-character-secondary'>
+        <p className='text-character-secondary mt-6 text-lg leading-8'>
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry's standard dummy text ever
           since the 1500s, when an unknown printer took a galley of type and

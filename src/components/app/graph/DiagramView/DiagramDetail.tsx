@@ -20,7 +20,7 @@ export default function App() {
       key: 1,
       title: 'Locate in File',
       startContent: <Image src='/svg/graph/Pushpin.svg' alt='' />,
-      content: () => (
+      content: (
         <div className='p-3'>
           <div> Question 1.</div>
 
@@ -99,9 +99,9 @@ function Elaborate() {
     },
   ];
   return (
-    <div className='flex flex-col gap-2 justify-evenly my-1'>
+    <div className='my-1 flex flex-col justify-evenly gap-2'>
       {list.map((it) => (
-        <div key={it.title} className='p-2 rounded-md border-1 '>
+        <div key={it.title} className='border-1 rounded-md p-2 '>
           <div className='flex justify-between '>
             <div>{it.title}</div>
             <div>

@@ -9,9 +9,9 @@ import {
 import Image from 'next/image';
 import React, { useState } from 'react';
 interface LoginModalProps {
-  // isOpen,
-  // onOpen,
-  // onOpenChange
+  isOpen: any;
+  onOpen: any;
+  onOpenChange: any;
 }
 const loginIn = {
   title: 'Login In',
@@ -40,8 +40,8 @@ export default function LoginModal({
         {(onClose) => (
           <>
             <ModalBody>
-              <div className='flex justify-center flex-col items-center gap-4 py-3'>
-                <h1 className='text-stone-900 text-3xl font-bold '>
+              <div className='flex flex-col items-center justify-center gap-4 py-3'>
+                <h1 className='text-3xl font-bold text-stone-900 '>
                   {renderData.title}
                 </h1>
                 <div className='text-neutral-400'>
@@ -63,9 +63,9 @@ export default function LoginModal({
                 </Button>
 
                 <div className='flex items-center gap-3'>
-                  <div className='w-44 h-px bg-slate-200' />
+                  <div className='h-px w-44 bg-slate-200' />
                   <span>or</span>
-                  <div className='w-44 h-px bg-slate-200' />
+                  <div className='h-px w-44 bg-slate-200' />
                 </div>
                 {renderData.content}
 
@@ -74,7 +74,7 @@ export default function LoginModal({
                 </Button>
                 <div>
                   <span>{renderData.footerTip}</span>
-                  <span className='text-sky-500 ml-2' onClick={hanldeSwitch}>
+                  <span className='ml-2 text-sky-500' onClick={hanldeSwitch}>
                     {renderData.switch}
                   </span>
                 </div>

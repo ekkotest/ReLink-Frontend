@@ -1,11 +1,3 @@
-/*
- * @Author: error: error: git config user.name & please set dead value or install git && error: git config user.email & please set dead value or install git & please set dead value or install git
- * @Date: 2024-01-14 13:44:32
- * @LastEditors: error: error: git config user.name & please set dead value or install git && error: git config user.email & please set dead value or install git & please set dead value or install git
- * @LastEditTime: 2024-01-14 16:12:22
- * @FilePath: /ReLink-Frontend/src/app/graph/page.tsx
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- */
 'use client';
 import { Checkbox, CheckboxGroup, Tab, Tabs } from '@nextui-org/react';
 import { Key, useState } from 'react';
@@ -81,8 +73,8 @@ export default function GraphPage() {
             <Tab key='Detail' title='Detail' />
           </Tabs>
         </div>
-        <div className='Rectangle1204  rounded bg-[#f1f1f1]'>
-          <div className='flex w-full flex-row gap-10 items-center py-2 pl-20'>
+        <div className='Rectangle1204  rounded  bg-neutral-50'>
+          <div className='flex w-full flex-row items-center gap-10 py-2 pl-20'>
             <Tabs
               aria-label='Options base'
               className='tabContent'
