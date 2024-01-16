@@ -1,3 +1,7 @@
+import SectionName from '@/components/app/home/SectionName';
+import SectionTitle1 from '@/components/app/home/SectionTitle1';
+import SectionTitle2 from '@/components/app/home/SectionTitle2';
+
 const data = [
   {
     title: 'Catch all key points',
@@ -48,19 +52,15 @@ const Card = ({
 
 const Title = () => (
   <div className='Frame619 flex flex-col items-center justify-start gap-5'>
-    <div className="Features font-['Public Sans'] text-center text-base font-medium leading-normal text-sky-500">
-      Features
-    </div>
+    <SectionName>Features</SectionName>
     <div className='Frame623 flex flex-col items-center justify-start gap-5'>
-      <div className="ReImagineLiteratureReview font-['Public Sans'] text-center text-3xl font-bold leading-9 text-stone-900">
-        Re-imagine Literature Review
-      </div>
-      <div className="RelinkIsAnInnovativeToolThatSummarizesResearchPapersIntoPropositionsWhichAreCitationWorthyStatementsWithOurMethodYouWillSaveSignificantTimeByReadingSummariedArticlesWithoutMissingKeyInsights font-['Public Sans']  w-[60vw] text-center text-sm font-normal leading-snug text-neutral-400">
+      <SectionTitle1>Re-imagine Literature Review</SectionTitle1>
+      <SectionTitle2>
         Relink is an innovative tool that summarizes research papers into
         propositions, which are citation-worthy statements. With our method, you
-        will save significant time by reading summaried articles, without
+        will save significant time by reading summarized articles, without
         missing key insights.
-      </div>
+      </SectionTitle2>
     </div>
   </div>
 );

@@ -2,9 +2,7 @@
 
 import Footer from '@/components/app/Footer';
 import Features from '@/components/app/home/Features';
-import Universities from '@/components/app/home/Universities';
-import UploadFile from '@/components/app/home/UploadFile';
-import UploadPageTitle from '@/components/app/home/UploadPageTitle';
+import Upload from '@/components/app/home/Upload';
 /**
  * SVGR Support
  * Caveat: No React Props Type.
@@ -20,17 +18,10 @@ import UploadPageTitle from '@/components/app/home/UploadPageTitle';
 
 export default function HomePage() {
   return (
-    <main>
-      <section className='flex h-[calc(100vh-80px)] flex-col items-center justify-center'>
-        <UploadPageTitle />
-        <UploadFile />
-        <Universities />
-      </section>
-      <section className='flex flex-col items-center justify-center'>
-        <Features />
-      </section>
-
-      <Footer></Footer>
+    <main className='flex flex-col items-center justify-center'>
+      <Upload />
+      <Features />
+      <Footer />
     </main>
   );
 }

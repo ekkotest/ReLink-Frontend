@@ -1,13 +1,14 @@
+import SectionTitle1 from '@/components/app/home/SectionTitle1';
+import SectionTitle2 from '@/components/app/home/SectionTitle2';
+
 export default function UploadPageTitle() {
   return (
-    <div className='Frame39640 inline-flex h-16  flex-col items-center justify-start gap-1.5 px-5'>
-      <div className="KnowAnyPaperInMinutes font-['Public Sans'] text-3xl font-bold leading-9 text-neutral-800">
-        Know any paper in minutes
-      </div>
-      <div className="LetAiSummarizeYourPapersIntoKeyPropositionsAndSaveHoursOfReading font-['Public Sans'] text-base font-normal leading-normal text-neutral-400">
+    <div className='Frame39640 inline-flex h-16  flex-col items-center justify-center gap-1.5 px-5'>
+      <SectionTitle1>Know any paper in minutes</SectionTitle1>
+      <SectionTitle2>
         Let AI summarize your papers into key propositions and save hours of
         reading.
-      </div>
+      </SectionTitle2>
     </div>
   );
 }
