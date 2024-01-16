@@ -1,9 +1,10 @@
 'use client';
 
 import Footer from '@/components/app/Footer';
-import Universities from '@/components/app/Universities';
-import UploadFile from '@/components/app/UploadFile';
-import UploadPageTitle from '@/components/app/UploadPageTitle';
+import Features from '@/components/app/home/Features';
+import Universities from '@/components/app/home/Universities';
+import UploadFile from '@/components/app/home/UploadFile';
+import UploadPageTitle from '@/components/app/home/UploadPageTitle';
 /**
  * SVGR Support
  * Caveat: No React Props Type.
@@ -22,11 +23,13 @@ export default function HomePage() {
     <main>
       <section className='flex h-[calc(100vh-80px)] flex-col items-center justify-center'>
         <UploadPageTitle />
-
         <UploadFile />
-        {/* <Link href='/graph'> See /components test page</Link> */}
         <Universities />
       </section>
+      <section className='flex flex-col items-center justify-center'>
+        <Features />
+      </section>
+
       <Footer></Footer>
     </main>
   );
