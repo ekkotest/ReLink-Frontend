@@ -6,6 +6,7 @@ import '@/styles/globals.css';
 import '@/styles/colors.css';
 
 import Header from '@/components/app/Header';
+import Providers from '@/components/app/Providers';
 
 import { siteConfig } from '@/constant/config';
 
@@ -59,8 +60,10 @@ export default function RootLayout({
   return (
     <html>
       <body>
-        <Header></Header>
-        {children}
+        <Providers>
+          <Header></Header>
+          {children}
+        </Providers>
       </body>
     </html>
   );

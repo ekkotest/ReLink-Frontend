@@ -1,9 +1,7 @@
 'use client';
 
-import Link from 'next/link';
-
 import Footer from '@/components/app/Footer';
-import Providers from '@/components/app/Providers';
+import Universities from '@/components/app/Universities';
 import UploadFile from '@/components/app/UploadFile';
 import UploadPageTitle from '@/components/app/UploadPageTitle';
 /**
@@ -22,14 +20,12 @@ import UploadPageTitle from '@/components/app/UploadPageTitle';
 export default function HomePage() {
   return (
     <main>
-      <section className='dark bg-white'>
-        <Providers>
-          <UploadPageTitle />
-          <div className='layout relative flex min-h-screen flex-col items-center justify-center py-12 text-center'>
-            <UploadFile></UploadFile>
-            <Link href='/graph'> See /components test page</Link>
-          </div>
-        </Providers>
+      <section className='flex h-[calc(100vh-80px)] flex-col items-center justify-center'>
+        <UploadPageTitle />
+
+        <UploadFile />
+        {/* <Link href='/graph'> See /components test page</Link> */}
+        <Universities />
       </section>
       <Footer></Footer>
     </main>
