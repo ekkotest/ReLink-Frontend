@@ -1,7 +1,9 @@
 'use client';
 
 import Footer from '@/components/app/Footer';
+import AboutUS from '@/components/app/home/AboutUs';
 import Features from '@/components/app/home/Features';
+import HowItWorks from '@/components/app/home/HowItWorks';
 import Upload from '@/components/app/home/Upload';
 /**
  * SVGR Support
@@ -20,7 +22,11 @@ export default function HomePage() {
   return (
     <main className='flex flex-col items-center justify-center'>
       <Upload />
-      <Features />
+      <div className='flex flex-col items-center justify-center gap-32'>
+        <Features />
+        <HowItWorks />
+        <AboutUS />
+      </div>
       <Footer />
     </main>
   );
