@@ -1,22 +1,3 @@
-const Title = () => (
-  <div className='Frame619 flex flex-col items-center justify-start gap-5'>
-    <div className="Features font-['Public Sans'] text-center text-base font-medium leading-normal text-sky-500">
-      Features
-    </div>
-    <div className='Frame623 flex flex-col items-center justify-start gap-5'>
-      <div className="ReImagineLiteratureReview font-['Public Sans'] text-center text-3xl font-bold leading-9 text-stone-900">
-        Re-imagine Literature Review
-      </div>
-      <div className="RelinkIsAnInnovativeToolThatSummarizesResearchPapersIntoPropositionsWhichAreCitationWorthyStatementsWithOurMethodYouWillSaveSignificantTimeByReadingSummariedArticlesWithoutMissingKeyInsights font-['Public Sans']  w-[60vw] text-center text-sm font-normal leading-snug text-neutral-400">
-        Relink is an innovative tool that summarizes research papers into
-        propositions, which are citation-worthy statements. With our method, you
-        will save significant time by reading summaried articles, without
-        missing key insights.
-      </div>
-    </div>
-  </div>
-);
-
 const data = [
   {
     title: 'Catch all key points',
@@ -60,6 +41,25 @@ const Card = ({
       </div>
       <div className="WeDistillComplexPapersIntoClearAndConcisePropositionsSoYouCanCatchAllCitationWorthyKnowledgeCustomizeTheDepthOfSummaryToGetTheRightAmountOfDetail font-['Public Sans'] w-80 text-sm font-normal leading-snug text-neutral-400">
         {content}
+      </div>
+    </div>
+  </div>
+);
+
+const Title = () => (
+  <div className='Frame619 flex flex-col items-center justify-start gap-5'>
+    <div className="Features font-['Public Sans'] text-center text-base font-medium leading-normal text-sky-500">
+      Features
+    </div>
+    <div className='Frame623 flex flex-col items-center justify-start gap-5'>
+      <div className="ReImagineLiteratureReview font-['Public Sans'] text-center text-3xl font-bold leading-9 text-stone-900">
+        Re-imagine Literature Review
+      </div>
+      <div className="RelinkIsAnInnovativeToolThatSummarizesResearchPapersIntoPropositionsWhichAreCitationWorthyStatementsWithOurMethodYouWillSaveSignificantTimeByReadingSummariedArticlesWithoutMissingKeyInsights font-['Public Sans']  w-[60vw] text-center text-sm font-normal leading-snug text-neutral-400">
+        Relink is an innovative tool that summarizes research papers into
+        propositions, which are citation-worthy statements. With our method, you
+        will save significant time by reading summaried articles, without
+        missing key insights.
       </div>
     </div>
   </div>
