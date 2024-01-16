@@ -4,7 +4,7 @@ import SectionTitle2 from '@/components/app/home/SectionTitle2';
 
 export default function AboutUS() {
   return (
-    <div className='AboutUs inline-flex  w-screen flex-col items-center justify-start gap-2.5 bg-neutral-50 p-10'>
+    <div className='AboutUs inline-flex  w-full  flex-col items-center  justify-start gap-2.5  bg-neutral-50 p-10'>
       <div className='Title flex h-80 flex-col items-center justify-start gap-5 pb-10'>
         <div className='Frame623 flex flex-col items-center justify-start gap-2.5'>
           <SectionName>Relink</SectionName>

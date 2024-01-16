@@ -20,9 +20,9 @@ import Upload from '@/components/app/home/Upload';
 
 export default function HomePage() {
   return (
-    <main className='flex flex-col items-center justify-center'>
+    <main className='flex w-full flex-col items-center justify-center'>
       <Upload />
-      <div className='flex flex-col items-center justify-center gap-32'>
+      <div className='flex w-full flex-col items-center justify-center gap-32'>
         <Features />
         <HowItWorks />
         <AboutUS />
