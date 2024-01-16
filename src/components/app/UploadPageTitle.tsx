@@ -1,6 +1,6 @@
 export default function UploadPageTitle() {
   return (
-    <div className='Frame39640 inline-flex h-16  flex-col items-center justify-start gap-1.5'>
+    <div className='Frame39640 inline-flex h-16  flex-col items-center justify-start gap-1.5 px-5'>
       <div className="KnowAnyPaperInMinutes font-['Public Sans'] text-3xl font-bold leading-9 text-neutral-800">
         Know any paper in minutes
       </div>

@@ -37,7 +37,7 @@ const UploadFileArea: React.FC = () => {
       <div className='text-center'>
         <span className="font-['Public Sans'] text-base font-normal leading-normal text-stone-950">
           Drag & drop files or
-        </span>
+        </span>{' '}
         <span className="font-['Public Sans'] text-base font-normal leading-normal text-zinc-800"></span>
         <span className="font-['Public Sans'] text-base font-normal leading-normal text-sky-500 underline">
           Browse
