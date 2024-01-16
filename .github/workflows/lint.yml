@@ -15,26 +15,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: ⬇️ Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
-      - name: ⎔ Setup node
-        uses: actions/setup-node@v3
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2.4.0
+
+      - name: ⎔ Set node version to 18
+        uses: actions/setup-node@v4
         with:
           node-version: 18
+          cache: 'pnpm'
 
-      - name: 📥 Download deps
-        uses: u0reo/npm-install@fix/restore-failure
-        with:
-          useRollingCache: true
+      - name: 📥 Install deps
+        uses: pnpm install
 
       - name: 🔬 Lint
-        run: yarn lint:strict
+        run: pnpm run lint:strict
 
       - name: 🔎 Type check
-        run: yarn typecheck
+        run: pnpm run typecheck
 
       - name: 💅 Prettier check
-        run: yarn format:check
+        run: pnpm run format:check
 
       - name: 🃏 Run jest
-        run: yarn test
+        run: pnpm run test
