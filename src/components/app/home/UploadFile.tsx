@@ -28,7 +28,7 @@ const UploadFileArea: React.FC = () => {
 
   return (
     <div
-      className='UploadFileArea flex h-[80%] w-full cursor-pointer flex-col items-center justify-center gap-2.5 rounded-md border-2 border-dashed duration-300 hover:border-sky-500/60'
+      className='UploadFileArea hover:border-sky-500/60 flex h-[80%] w-[60vw] cursor-pointer flex-col items-center justify-center gap-2.5 rounded-md border-2 border-dashed duration-300'
       onClick={handleFileClick}
       onDrop={handleFileDrop}
       onDragOver={(e) => e.preventDefault()}
@@ -37,10 +37,8 @@ const UploadFileArea: React.FC = () => {
       <div className='text-center'>
         <span className="font-['Public Sans'] text-base font-normal leading-normal text-stone-950">
           Drag & drop files or
-        </span>
-        <span className="font-['Public Sans'] text-base font-normal leading-normal text-zinc-800">
-          {' '}
-        </span>
+        </span>{' '}
+        <span className="font-['Public Sans'] text-base font-normal leading-normal text-zinc-800"></span>
         <span className="font-['Public Sans'] text-base font-normal leading-normal text-sky-500 underline">
           Browse
         </span>
@@ -67,11 +65,11 @@ export default function UploadFile() {
     console.log('test');
   };
   return (
-    <>
+    <div className='layout relative flex  flex-col items-center justify-center py-12 text-center'>
       <div className='WhiteBackground flex h-[50vh] w-full flex-col items-center justify-center gap-5 rounded-2xl border border-zinc-300 bg-white p-10'>
         <div className='HeadingUpload flex items-start justify-start gap-2.5 px-2.5'>
           <div className="ExtractDataFromPdfs font-['Public Sans'] text-center text-xl font-medium leading-7 text-stone-950">
-            Upload{' '}
+            Extract data from PDFs
           </div>
         </div>
         {/* <input type='file' className='h-[80%] w-full ' accept='.pdf' /> */}
@@ -88,6 +86,6 @@ export default function UploadFile() {
           </div>
         </button>
       </div>
-    </>
+    </div>
   );
 }

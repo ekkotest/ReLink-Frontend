@@ -1,11 +1,10 @@
 'use client';
 
-import Link from 'next/link';
-
 import Footer from '@/components/app/Footer';
-import Providers from '@/components/app/Providers';
-import UploadFile from '@/components/app/UploadFile';
-import UploadPageTitle from '@/components/app/UploadPageTitle';
+import AboutUS from '@/components/app/home/AboutUs';
+import Features from '@/components/app/home/Features';
+import HowItWorks from '@/components/app/home/HowItWorks';
+import Upload from '@/components/app/home/Upload';
 /**
  * SVGR Support
  * Caveat: No React Props Type.
@@ -21,17 +20,14 @@ import UploadPageTitle from '@/components/app/UploadPageTitle';
 
 export default function HomePage() {
   return (
-    <main>
-      <section className='dark bg-white'>
-        <Providers>
-          <UploadPageTitle />
-          <div className='layout relative flex min-h-screen flex-col items-center justify-center py-12 text-center'>
-            <UploadFile></UploadFile>
-            <Link href='/graph'> See /components test page</Link>
-          </div>
-        </Providers>
-      </section>
-      <Footer></Footer>
+    <main className='flex w-full flex-col items-center justify-center'>
+      <Upload />
+      <div className='flex w-full flex-col items-center justify-center gap-32'>
+        <Features />
+        <HowItWorks />
+        <AboutUS />
+      </div>
+      <Footer />
     </main>
   );
 }
