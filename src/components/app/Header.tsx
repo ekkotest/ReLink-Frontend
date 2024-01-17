@@ -1,5 +1,13 @@
 'use client';
-import { Button, useDisclosure } from '@nextui-org/react';
+import {
+  Avatar,
+  Button,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
+  useDisclosure,
+} from '@nextui-org/react';
 import Image from 'next/image';
 import { useState } from 'react';
 
@@ -14,10 +22,10 @@ const navigation = [
 export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const [loginStatus, setloginStatus] = useState(false);
+  const [loginStatus, setloginStatus] = useState(true);
   const handleSignIn = () => {
     onOpen();
-    setloginStatus(!loginStatus);
+    // setloginStatus(!loginStatus);
   };
   return (
     <div>
@@ -56,16 +64,45 @@ export default function Example() {
                   alt=''
                 ></Image>
               ))}
-              <div className='flex items-center gap-2' onClick={handleSignIn}>
+              <div className='flex items-center gap-2'>
                 {loginStatus ? (
                   <>
-                    <Image
-                      src='/svg/header/female.svg'
-                      width={30}
-                      height={30}
-                      alt=''
-                    ></Image>
-                    William Wang
+                    <Dropdown placement='bottom-end'>
+                      <DropdownTrigger>
+                        <div
+                          className='flex items-center gap-2'
+                          onClick={handleSignIn}
+                        >
+                          <Avatar
+                            as='button'
+                            className='transition-transform'
+                            name='Jason Hughes'
+                            size='sm'
+                            src='/svg/header/female.svg'
+                          />
+                          William Wang
+                        </div>
+                      </DropdownTrigger>
+                      <DropdownMenu aria-label='Profile Actions' variant='flat'>
+                        <DropdownItem key='profile' className='h-14 gap-2'>
+                          <p className='font-semibold'>Signed in as</p>
+                          <p className='font-semibold'>zoey@example.com</p>
+                        </DropdownItem>
+                        <DropdownItem key='settings'>My Saves</DropdownItem>
+                        <DropdownItem key='team_settings'>
+                          Edit Profile
+                        </DropdownItem>
+                        <DropdownItem key='analytics'>
+                          Setting & Privacy
+                        </DropdownItem>
+                        <DropdownItem key='help_and_feedback'>
+                          Help & Support
+                        </DropdownItem>
+                        <DropdownItem key='logout' color='danger'>
+                          Log Out
+                        </DropdownItem>
+                      </DropdownMenu>
+                    </Dropdown>
                   </>
                 ) : (
                   <>

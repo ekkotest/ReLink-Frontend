@@ -34,6 +34,12 @@ export default function LoginModal({
   const hanldeSwitch = () => {
     setRenderData(renderData.title == 'Login In' ? signUp : loginIn);
   };
+
+  const handleGoogle = () => {
+    // signIn('google');
+    // signOut();
+  };
+
   return (
     <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
       <ModalContent>
@@ -48,8 +54,9 @@ export default function LoginModal({
                   Please fill your detail to access your account.
                 </div>
                 <Button
-                  variant='bordered'
+                  variant='flat'
                   className='w-full'
+                  onClick={handleGoogle}
                   startContent={
                     <Image
                       src='/svg/common/Google.svg'
@@ -91,8 +98,8 @@ function Login() {
     <>
       <Input type='email' label='Email Address' />
       <Input type='email' label='Password' />
-      <div className='flex justify-between'>
-        <Checkbox defaultSelected>Option</Checkbox>
+      <div className='flex w-full justify-between'>
+        <Checkbox defaultSelected>Remember me</Checkbox>
         <div>Forgot Password?</div>
       </div>
     </>
@@ -108,10 +115,6 @@ function SignUp() {
       <Input type='email' label='Password' />
       <Input type='email' label='Password' />
       <Input type='email' label='Password' />
-      <div className='flex justify-between'>
-        <Checkbox defaultSelected>Option</Checkbox>
-        <div>Forgot Password?</div>
-      </div>
     </>
   );
 }

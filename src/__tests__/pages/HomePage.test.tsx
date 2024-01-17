@@ -2,13 +2,13 @@
 
 import { render, screen } from '@testing-library/react';
 
-import HomePage from '@/app/page';
+import AppPage from '@/app/page';
 
-describe('Homepage', () => {
+describe('AppPage', () => {
   it('renders the Components', () => {
-    render(<HomePage />);
+    render(<AppPage />);
 
-    const heading = screen.getByText(/A starter for Next.js/i);
+    const heading = screen.getByText('Upload');
 
     expect(heading).toBeInTheDocument();
   });
