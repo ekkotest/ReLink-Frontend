@@ -27,7 +27,7 @@ jobs:
           cache: 'pnpm'
 
       - name: 📥 Install deps
-        uses: pnpm install
+        run: pnpm install
 
       - name: 🔬 Lint
         run: pnpm run lint:strict

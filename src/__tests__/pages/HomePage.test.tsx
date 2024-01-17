@@ -8,7 +8,7 @@ describe('AppPage', () => {
   it('renders the Components', () => {
     render(<AppPage />);
 
-    const heading = screen.getByText('Upload');
+    const heading = screen.getByText('Generate');
 
     expect(heading).toBeInTheDocument();
   });
