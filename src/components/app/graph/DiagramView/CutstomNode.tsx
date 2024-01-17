@@ -5,7 +5,7 @@ import { Handle, NodeProps, Position } from 'reactflow';
 export default memo((props: NodeProps) => {
   return (
     <>
-      <BaseNode className={props.selected ? 'border-sky-500' : ''}></BaseNode>
+      <BaseNode className={props.selected ? 'border-primary' : ''}></BaseNode>
       <Handle
         type='source'
         className='!right-0 opacity-0'
@@ -38,7 +38,7 @@ export function BaseNode(props) {
           Experiment
         </div>
         <div className='flex items-center gap-1'>
-          <span key={isSave} className='animate-shimmer  text-xs text-sky-500'>
+          <span key={isSave} className='animate-shimmer  text-xs text-primary'>
             Saved
           </span>
           <Image

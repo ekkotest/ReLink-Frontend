@@ -28,18 +28,18 @@ const UploadFileArea: React.FC = () => {
 
   return (
     <div
-      className='UploadFileArea hover:border-sky-500/60 flex h-[80%] w-[60vw] cursor-pointer flex-col items-center justify-center gap-2.5 rounded-md border-2 border-dashed duration-300'
+      className='UploadFileArea hover:border-primary/60 flex h-[80%] w-[60vw] cursor-pointer flex-col items-center justify-center gap-2.5 rounded-md border-2 border-dashed duration-300'
       onClick={handleFileClick}
       onDrop={handleFileDrop}
       onDragOver={(e) => e.preventDefault()}
     >
-      <AiOutlineInbox className='h-[72px] w-[72px] rounded-full bg-sky-500/5 p-3 text-6xl text-sky-500' />
+      <AiOutlineInbox className='h-[72px] w-[72px] rounded-full bg-primary/5 p-3 text-6xl text-primary' />
       <div className='text-center'>
         <span className="font-['Public Sans'] text-base font-normal leading-normal text-stone-950">
           Drag & drop files or
         </span>{' '}
         <span className="font-['Public Sans'] text-base font-normal leading-normal text-zinc-800"></span>
-        <span className="font-['Public Sans'] text-base font-normal leading-normal text-sky-500 underline">
+        <span className="font-['Public Sans'] text-base font-normal leading-normal text-primary underline">
           Browse
         </span>
       </div>
@@ -77,7 +77,7 @@ export default function UploadFile() {
         <UploadFileArea />
 
         <button
-          className=' inline-flex h-11 w-full items-center justify-center gap-2.5 rounded-lg bg-sky-500 px-3.5 py-2 opacity-50'
+          className=' inline-flex h-11 w-full items-center justify-center gap-2.5 rounded-lg bg-primary px-3.5 py-2 opacity-50'
           disabled={fileList.length === 0}
           onClick={handleUpload}
         >
