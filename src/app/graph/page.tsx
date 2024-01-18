@@ -3,8 +3,9 @@ import { Checkbox, CheckboxGroup, Tab, Tabs } from '@nextui-org/react';
 import { Key, useState } from 'react';
 import { ReactFlowProvider } from 'reactflow';
 
+import TableView from '@/components/app/graph/TableView/TableView';
+
 import LayoutFlow from '../../components/app/graph/DiagramView/DiagramView';
-import TableView from '../../components/app/graph/TableVIew/TableVIew';
 export default function GraphPage() {
   const optionsWithDisabled = [
     {
@@ -54,7 +55,7 @@ export default function GraphPage() {
               networks, where deeper networks have higher training error, is
               attributed to optimization difficulties rather than...
             </span>
-            <span className="font-['Public Sans'] text-sm font-normal leading-snug text-primary">
+            <span className="font-['Public Sans'] text-primary text-sm font-normal leading-snug">
               Expand
             </span>
             <span className="font-['Public Sans'] text-sm font-normal leading-snug text-black">
