@@ -54,7 +54,7 @@ export default function GraphPage() {
               networks, where deeper networks have higher training error, is
               attributed to optimization difficulties rather than...
             </span>
-            <span className="font-['Public Sans'] text-sm font-normal leading-snug text-sky-500">
+            <span className="font-['Public Sans'] text-sm font-normal leading-snug text-primary">
               Expand
             </span>
             <span className="font-['Public Sans'] text-sm font-normal leading-snug text-black">

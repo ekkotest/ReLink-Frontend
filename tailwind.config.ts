@@ -8,6 +8,9 @@ export default {
   ],
   theme: {
     extend: {
+      colors: {
+        primary: '#1890FF',
+      },
       keyframes: {
         shimmer: {
           '0%': {
