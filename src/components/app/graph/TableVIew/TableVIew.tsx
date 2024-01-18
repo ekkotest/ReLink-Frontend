@@ -2,7 +2,7 @@ import TableColumn from '@/components/app/graph/TableView/TableColumn';
 
 export default function TableView() {
   // TODO: Replace test data with props
-  const MAX_TEST_ITEMS = 5;
+  const MAX_TEST_ITEMS = 3;
   const tests = [
     {
       title: 'Hypothesis',
@@ -23,7 +23,7 @@ export default function TableView() {
   ];
 
   return (
-    <div className='flex max-h-full max-w-full flex-row gap-2.5'>
+    <div className='mx-20 my-0 flex max-h-full max-w-full flex-row gap-2.5'>
       {tests.map((t, i) => (
         <TableColumn key={i} tableColumn={tests[i]}></TableColumn>
       ))}
