@@ -1,4 +1,7 @@
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { createContext, useContext, useState } from 'react';
+
+import { auth } from '@/components/app/Login/auth';
 
 // create a context for the authentication
 const AuthContext = createContext({
@@ -7,8 +10,8 @@ const AuthContext = createContext({
     // Perform login logic (e.g., call your authentication API)
     // Set isLoggedIn to true if login is successful
   },
-  signup: () => {
-    // Perform signup logic (e.g., call your registration API)
+  signup: (email: string, password: string) => {
+    // Perform signup logic (e.g., call your authentication API)
     // Set isLoggedIn to true if signup is successful
   },
   logout: () => {
@@ -24,7 +27,19 @@ export const AuthProvider = ({ children }) => {
     setIsLoggedIn(true);
   };
 
-  const signup = () => {
+  const signup = (email: string, password: string) => {
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed up
+        const user = userCredential.user;
+        console.log('Signed up user:', user);
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+      });
     setIsLoggedIn(true);
   };
 

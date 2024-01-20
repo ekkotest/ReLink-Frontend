@@ -10,22 +10,8 @@ import React from 'react';
 
 import { useLoginModal, useSignupModal } from '@/components/app/Login/context';
 
-function SignUp() {
-  return (
-    <>
-      <div className='flex justify-between gap-3'>
-        <Input type='text' variant='bordered' label='First Name' />
-        <Input type='text' variant='bordered' label='Last Name' />
-      </div>
-      <Input type='email' variant='bordered' label='Email Address' />
-      <Input type='password' variant='bordered' label='Choose Password' />
-      <Input type='password' variant='bordered' label='Confirm Password' />
-    </>
-  );
-}
 const signUp = {
   title: 'Sign up',
-  content: <SignUp></SignUp>,
   footerTip: 'Already have an account? ',
   switch: 'Login In',
 };
@@ -49,6 +35,34 @@ export default function SignupModal() {
     onOpen: onSignupOpen,
     onOpenChange: onSignupOpenChange,
   } = useSignupModal();
+
+  const [firstName, setFirstName] = React.useState('');
+  const [lastName, setLastName] = React.useState('');
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+  const [confirmPassword, setConfirmPassword] = React.useState('');
+
+  const validateEmail = (value) =>
+    value.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i);
+  const validatePassword = (value) => value.length > 6;
+
+  const isEmailInvalid = React.useMemo(() => {
+    if (email === '') return false;
+
+    return validateEmail(email) ? false : true;
+  }, [email]);
+
+  const isPasswordInvalid = React.useMemo(() => {
+    if (password === '') return false;
+
+    return validatePassword(password) ? false : true;
+  }, [password]);
+
+  const isConfirmPasswordInvalid = React.useMemo(() => {
+    if (confirmPassword === '') return false;
+
+    return confirmPassword === password ? false : true;
+  }, [confirmPassword, password]);
 
   return (
     <Modal isOpen={isSignupOpen} onOpenChange={onSignupOpenChange}>
@@ -82,7 +96,57 @@ export default function SignupModal() {
               <span>or</span>
               <div className='h-px w-44 bg-slate-200' />
             </div>
-            {signUp.content}
+
+            <div className='flex justify-between gap-3'>
+              <Input
+                isRequired
+                type='text'
+                variant='bordered'
+                label='First Name'
+                onChange={(e) => setFirstName(e.target.value)}
+              />
+              <Input
+                isRequired
+                type='text'
+                variant='bordered'
+                label='Last Name'
+                onChange={(e) => setLastName(e.target.value)}
+              />
+            </div>
+            <Input
+              isRequired
+              type='email'
+              variant='bordered'
+              label='Email Address'
+              isInvalid={isEmailInvalid}
+              color={isEmailInvalid ? 'danger' : undefined}
+              errorMessage={isEmailInvalid && 'Please enter a valid email'}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <Input
+              isRequired
+              type='password'
+              variant='bordered'
+              label='Choose Password'
+              isInvalid={isPasswordInvalid}
+              color={isPasswordInvalid ? 'danger' : undefined}
+              errorMessage={
+                isPasswordInvalid && 'Password must be at least 6 characters'
+              }
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <Input
+              isRequired
+              type='password'
+              variant='bordered'
+              label='Confirm Password'
+              isInvalid={isConfirmPasswordInvalid}
+              color={isConfirmPasswordInvalid ? 'danger' : undefined}
+              errorMessage={
+                isConfirmPasswordInvalid && 'Password does not match'
+              }
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
 
             <Button color='primary' className='w-full'>
               Sign Up
