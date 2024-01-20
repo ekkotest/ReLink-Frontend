@@ -10,6 +10,7 @@ import {
 import Image from 'next/image';
 import { useState } from 'react';
 
+import { auth } from '@/components/app/Login/auth';
 import {
   useAuth,
   useLoginModal,
@@ -35,7 +36,16 @@ export default function Example() {
   const handleSignup = () => {
     onOpenSignup();
   };
+
   const { isLoggedIn, login, signup, logout } = useAuth();
+
+  const handleAvatar = () => {
+    if (auth.currentUser?.photoURL) {
+      return auth.currentUser?.photoURL;
+    } else {
+      return '/svg/header/female.svg';
+    }
+  };
   return (
     <div>
       <header className='fixed inset-x-0 top-0 z-50 border-b shadow  backdrop-blur '>
@@ -75,44 +85,46 @@ export default function Example() {
               ))}
               <div className='flex items-center gap-2'>
                 {isLoggedIn ? (
-                  <>
-                    <Dropdown placement='bottom-end'>
-                      <DropdownTrigger>
-                        <div
-                          className='flex items-center gap-2'
-                          onClick={handleLogin}
-                        >
-                          <Avatar
-                            as='button'
-                            className='transition-transform'
-                            name='Jason Hughes'
-                            size='sm'
-                            src='/svg/header/female.svg'
-                          />
-                          William Wang
-                        </div>
-                      </DropdownTrigger>
-                      <DropdownMenu aria-label='Profile Actions' variant='flat'>
-                        <DropdownItem key='profile' className='h-14 gap-2'>
-                          <p className='font-semibold'>Signed in as</p>
-                          <p className='font-semibold'>zoey@example.com</p>
-                        </DropdownItem>
-                        <DropdownItem key='settings'>My Saves</DropdownItem>
-                        <DropdownItem key='team_settings'>
-                          Edit Profile
-                        </DropdownItem>
-                        <DropdownItem key='analytics'>
-                          Setting & Privacy
-                        </DropdownItem>
-                        <DropdownItem key='help_and_feedback'>
-                          Help & Support
-                        </DropdownItem>
-                        <DropdownItem key='logout' color='danger'>
-                          Log Out
-                        </DropdownItem>
-                      </DropdownMenu>
-                    </Dropdown>
-                  </>
+                  <Dropdown placement='bottom-end'>
+                    <DropdownTrigger>
+                      <div className='flex items-center gap-2'>
+                        <Avatar
+                          as='button'
+                          className='transition-transform'
+                          name='Jason Hughes'
+                          size='sm'
+                          src={handleAvatar()}
+                        />
+                        {auth.currentUser?.displayName}
+                      </div>
+                    </DropdownTrigger>
+                    <DropdownMenu
+                      aria-label='Profile Actions'
+                      variant='flat'
+                      disabledKeys={['profile']}
+                    >
+                      <DropdownItem key='profile' className='h-14 gap-2'>
+                        {auth.currentUser?.email}
+                      </DropdownItem>
+                      <DropdownItem key='settings'>My Saves</DropdownItem>
+                      <DropdownItem key='team_settings'>
+                        Edit Profile
+                      </DropdownItem>
+                      <DropdownItem key='analytics'>
+                        Setting & Privacy
+                      </DropdownItem>
+                      <DropdownItem key='help_and_feedback'>
+                        Help & Support
+                      </DropdownItem>
+                      <DropdownItem
+                        key='logout'
+                        color='danger'
+                        onPress={logout}
+                      >
+                        Log Out
+                      </DropdownItem>
+                    </DropdownMenu>
+                  </Dropdown>
                 ) : (
                   <>
                     <Button variant='light' onClick={handleLogin}>
