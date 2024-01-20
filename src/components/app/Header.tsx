@@ -20,9 +20,9 @@ import LoginModal from '@/components/app/Login/LoginModal';
 import SignupModal from '@/components/app/Login/SignupModal';
 
 const navigation = [
-  { name: 'Product', src: '/svg/header/language.svg' },
-  { name: 'Product', src: '/svg/header/wrapper.svg' },
-  { name: 'Product', src: '/svg/header/Vector.svg' },
+  { name: 'translate', src: '/svg/header/language.svg' },
+  { name: 'headphone', src: '/svg/header/wrapper.svg' },
+  { name: 'discord', src: '/svg/header/Vector.svg' },
 ];
 
 export default function Example() {
