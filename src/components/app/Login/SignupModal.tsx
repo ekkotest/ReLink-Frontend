@@ -7,11 +7,8 @@ import {
 } from '@nextui-org/react';
 import Image from 'next/image';
 import React from 'react';
-interface LoginModalProps {
-  isOpen: any;
-  onOpen: any;
-  onOpenChange: any;
-}
+
+import { useLoginModal, useSignupModal } from '@/components/app/Login/context';
 
 function SignUp() {
   return (
@@ -32,22 +29,29 @@ const signUp = {
   footerTip: 'Already have an account? ',
   switch: 'Login In',
 };
-export default function LoginModal({
-  isOpen,
-  onOpen,
-  onOpenChange,
-}: LoginModalProps) {
+export default function SignupModal() {
   const handleGoogle = () => {
     // signIn('google');
     // signOut();
   };
 
   const handleSwitch = () => {
-    // setRenderData(renderData.title == 'Login In' ? signUp : loginIn);
+    onSignupOpenChange();
+    onLoginOpen();
   };
+  const {
+    isOpen: isLoginOpen,
+    onOpen: onLoginOpen,
+    onOpenChange: onLoginOpenChange,
+  } = useLoginModal();
+  const {
+    isOpen: isSignupOpen,
+    onOpen: onSignupOpen,
+    onOpenChange: onSignupOpenChange,
+  } = useSignupModal();
 
   return (
-    <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+    <Modal isOpen={isSignupOpen} onOpenChange={onSignupOpenChange}>
       <ModalContent>
         <ModalBody>
           <div className='flex flex-col items-center justify-center gap-4 py-3'>

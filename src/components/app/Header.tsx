@@ -6,12 +6,17 @@ import {
   DropdownItem,
   DropdownMenu,
   DropdownTrigger,
-  useDisclosure,
 } from '@nextui-org/react';
 import Image from 'next/image';
 import { useState } from 'react';
 
+import {
+  useAuth,
+  useLoginModal,
+  useSignupModal,
+} from '@/components/app/Login/context';
 import LoginModal from '@/components/app/Login/LoginModal';
+import SignupModal from '@/components/app/Login/SignupModal';
 
 const navigation = [
   { name: 'Product', src: '/svg/header/language.svg' },
@@ -21,12 +26,16 @@ const navigation = [
 
 export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const [loginStatus, setloginStatus] = useState(false);
-  const handleSignIn = () => {
-    onOpen();
-    // setloginStatus(!loginStatus);
+
+  const { onOpen: onOpenLogin } = useLoginModal();
+  const { onOpen: onOpenSignup } = useSignupModal();
+  const handleLogin = () => {
+    onOpenLogin();
   };
+  const handleSignup = () => {
+    onOpenSignup();
+  };
+  const { isLoggedIn, login, signup, logout } = useAuth();
   return (
     <div>
       <header className='fixed inset-x-0 top-0 z-50 border-b shadow  backdrop-blur '>
@@ -65,13 +74,13 @@ export default function Example() {
                 ></Image>
               ))}
               <div className='flex items-center gap-2'>
-                {loginStatus ? (
+                {isLoggedIn ? (
                   <>
                     <Dropdown placement='bottom-end'>
                       <DropdownTrigger>
                         <div
                           className='flex items-center gap-2'
-                          onClick={handleSignIn}
+                          onClick={handleLogin}
                         >
                           <Avatar
                             as='button'
@@ -106,11 +115,13 @@ export default function Example() {
                   </>
                 ) : (
                   <>
-                    <div onClick={handleSignIn}>Login in</div>
+                    <Button variant='light' onClick={handleLogin}>
+                      Login in
+                    </Button>
                     <Button
                       color='primary'
                       variant='solid'
-                      onClick={handleSignIn}
+                      onClick={handleSignup}
                     >
                       Sign up
                     </Button>
@@ -121,11 +132,8 @@ export default function Example() {
           </div>
         </nav>
       </header>
-      <LoginModal
-        isOpen={isOpen}
-        onOpen={onOpen}
-        onOpenChange={onOpenChange}
-      ></LoginModal>
+      <LoginModal />
+      <SignupModal />
       <div className='relative isolate px-6 pt-[80px] lg:px-8'>
         {/* <div
           className='absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80'
@@ -152,6 +160,7 @@ export default function Example() {
             }}
           />
         </div> */}
+        S
       </div>
     </div>
   );
