@@ -11,7 +11,7 @@ import {
 import Image from 'next/image';
 import { useState } from 'react';
 
-import LoginModal from '@/components/app/LoginModal/LoginModal';
+import LoginModal from '@/components/app/Login/LoginModal';
 
 const navigation = [
   { name: 'Product', src: '/svg/header/language.svg' },
