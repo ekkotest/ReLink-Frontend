@@ -27,25 +27,6 @@ const validatePassword = (value: string) => value.length > 6;
 export default function SignupModal() {
   const { signup, signupWithGoogle, isLoggedIn } = useAuth();
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      onSignupOpenChange();
-    }
-  }, [isLoggedIn]);
-
-  const handleGoogleSignup = () => {
-    signupWithGoogle();
-  };
-
-  const handleSignup = () => {
-    signup(email, password, setErrorFirebase);
-  };
-
-  const handleSwitch = () => {
-    setErrorFirebase('');
-    onSignupOpenChange();
-    onLoginOpen();
-  };
   const {
     isOpen: isLoginOpen,
     onOpen: onLoginOpen,
@@ -81,6 +62,26 @@ export default function SignupModal() {
 
     return confirmPassword === password ? false : true;
   }, [confirmPassword, password]);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      onSignupOpenChange();
+    }
+  }, [isLoggedIn]);
+
+  const handleGoogleSignup = () => {
+    signupWithGoogle();
+  };
+
+  const handleSignup = () => {
+    signup(email, password, setErrorFirebase);
+  };
+
+  const handleSwitch = () => {
+    setErrorFirebase('');
+    onSignupOpenChange();
+    onLoginOpen();
+  };
 
   return (
     <Modal isOpen={isSignupOpen} onOpenChange={onSignupOpenChange}>

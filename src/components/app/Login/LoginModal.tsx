@@ -7,43 +7,50 @@ import {
   ModalContent,
 } from '@nextui-org/react';
 import Image from 'next/image';
-import React from 'react';
+import React, { useEffect } from 'react';
 
-import { useLoginModal, useSignupModal } from '@/components/app/Login/context';
-
-function Login() {
-  return (
-    <>
-      <Input type='email' variant='bordered' label='Email Address' />
-      <Input type='password' variant='bordered' label='Password' />
-      <div className='flex w-full justify-between'>
-        <Checkbox>Remember me</Checkbox>
-        <button className='text-primary'>Forgot Password?</button>
-      </div>
-    </>
-  );
-}
+import {
+  useAuth,
+  useLoginModal,
+  useSignupModal,
+} from '@/components/app/Login/context';
 
 const loginIn = {
   title: 'Log In',
-  content: <Login></Login>,
+
   footerTip: "Don't have an account?",
   switch: 'Sign up',
 };
 
 export default function LoginModal() {
+  const { signupWithGoogle, isLoggedIn, login } = useAuth();
+
+  const { isOpen: isLoginOpen, onOpenChange: onLoginOpenChange } =
+    useLoginModal();
+
+  const { isOpen: isSignupOpen, onOpen: onSignupOpen } = useSignupModal();
+
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+  const [errorFirebase, setErrorFirebase] = React.useState('');
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      onLoginOpenChange();
+    }
+  }, [isLoggedIn]);
+
+  const handleGoogle = () => {
+    signupWithGoogle();
+  };
+
+  const handleLogin = () => {
+    login(email, password, setErrorFirebase);
+  };
   const hanldeSwitch = () => {
     onLoginOpenChange();
     onSignupOpen();
   };
-
-  const handleGoogle = () => {
-    // signIn('google');
-    // signOut();
-  };
-  const { isOpen: isLoginOpen, onOpenChange: onLoginOpenChange } =
-    useLoginModal();
-  const { isOpen: isSignupOpen, onOpen: onSignupOpen } = useSignupModal();
 
   return (
     <Modal isOpen={isLoginOpen} onOpenChange={onLoginOpenChange}>
@@ -79,11 +86,32 @@ export default function LoginModal() {
                   <span>or</span>
                   <div className='h-px w-44 bg-slate-200' />
                 </div>
-                {loginIn.content}
+                <Input
+                  type='email'
+                  variant='bordered'
+                  label='Email Address'
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+                <Input
+                  type='password'
+                  variant='bordered'
+                  label='Password'
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <div className='flex w-full justify-between'>
+                  <Checkbox>Remember me</Checkbox>
+                  <button className='text-primary'>Forgot Password?</button>
+                </div>
 
-                <Button color='primary' className='w-full'>
+                <Button
+                  color='primary'
+                  className='w-full'
+                  onPress={handleLogin}
+                >
                   Sign In
                 </Button>
+                <div className='text-red-400'>{errorFirebase}</div>
+
                 <div>
                   <span>{loginIn.footerTip}</span>
                   <button className='text-primary ml-2' onClick={hanldeSwitch}>

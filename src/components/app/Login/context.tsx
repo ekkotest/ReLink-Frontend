@@ -1,6 +1,7 @@
 import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
+  signInWithEmailAndPassword,
   signInWithPopup,
 } from 'firebase/auth';
 import { createContext, useContext, useState } from 'react';
@@ -11,7 +12,7 @@ import { auth } from '@/components/app/Login/auth';
 const AuthContext = createContext({
   isLoggedIn: false,
 
-  login: () => {
+  login: (email: string, password: string, setErrorFirebase) => {
     // Perform login logic (e.g., call your authentication API)
     // Set isLoggedIn to true if login is successful
   },
@@ -32,8 +33,19 @@ const AuthContext = createContext({
 export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const login = () => {
-    setIsLoggedIn(true);
+  const login = (email: string, password: string, setErrorFirebase: any) => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        // ...
+        setIsLoggedIn(true);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setErrorFirebase(errorCode);
+      });
   };
 
   const signup = (email: string, password: string, setErrorFirebase: any) => {
@@ -41,7 +53,7 @@ export const AuthProvider = ({ children }) => {
       .then((userCredential) => {
         // Signed up
         const user = userCredential.user;
-        console.log('Signed up user:', user);
+        // console.log('Signed up user:', user);
         // ...
         setIsLoggedIn(true);
       })
