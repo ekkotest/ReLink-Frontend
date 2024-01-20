@@ -22,7 +22,7 @@ const navigation = [
 export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const [loginStatus, setloginStatus] = useState(true);
+  const [loginStatus, setloginStatus] = useState(false);
   const handleSignIn = () => {
     onOpen();
     // setloginStatus(!loginStatus);
