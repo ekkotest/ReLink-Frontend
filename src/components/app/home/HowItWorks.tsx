@@ -18,7 +18,7 @@ export default function HowItWorks() {
   return (
     <div className='Features  inline-flex  flex-col items-center justify-center gap-16'>
       <Title />
-      <img className='w-[80vw] pl-32' src='svg/home/Diagrams.svg' />
+      <img className='w-[80vw] sm:pl-32' src='svg/home/Diagrams.svg' />
     </div>
   );
 }
