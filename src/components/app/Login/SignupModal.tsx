@@ -8,20 +8,36 @@ import {
 import Image from 'next/image';
 import React from 'react';
 
-import { useLoginModal, useSignupModal } from '@/components/app/Login/context';
+import {
+  useAuth,
+  useLoginModal,
+  useSignupModal,
+} from '@/components/app/Login/context';
 
 const signUp = {
   title: 'Sign up',
   footerTip: 'Already have an account? ',
   switch: 'Login In',
 };
+
+const validateEmail = (value: string) =>
+  value.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i);
+const validatePassword = (value: string) => value.length > 6;
+
 export default function SignupModal() {
   const handleGoogle = () => {
     // signIn('google');
     // signOut();
   };
 
+  const { signup } = useAuth();
+
+  const handleSignup = () => {
+    signup(email, password, setErrorFirebase);
+  };
+
   const handleSwitch = () => {
+    setErrorFirebase('');
     onSignupOpenChange();
     onLoginOpen();
   };
@@ -41,25 +57,22 @@ export default function SignupModal() {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [confirmPassword, setConfirmPassword] = React.useState('');
-
-  const validateEmail = (value) =>
-    value.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i);
-  const validatePassword = (value) => value.length > 6;
+  const [errorFirebase, setErrorFirebase] = React.useState('');
 
   const isEmailInvalid = React.useMemo(() => {
-    if (email === '') return false;
+    if (email === '') return true;
 
     return validateEmail(email) ? false : true;
   }, [email]);
 
   const isPasswordInvalid = React.useMemo(() => {
-    if (password === '') return false;
+    if (password === '') return true;
 
     return validatePassword(password) ? false : true;
   }, [password]);
 
   const isConfirmPasswordInvalid = React.useMemo(() => {
-    if (confirmPassword === '') return false;
+    if (confirmPassword === '') return true;
 
     return confirmPassword === password ? false : true;
   }, [confirmPassword, password]);
@@ -148,9 +161,21 @@ export default function SignupModal() {
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
 
-            <Button color='primary' className='w-full'>
+            <Button
+              color='primary'
+              className='w-full'
+              onClick={handleSignup}
+              isDisabled={
+                isEmailInvalid ||
+                isPasswordInvalid ||
+                isConfirmPasswordInvalid ||
+                firstName === '' ||
+                lastName === ''
+              }
+            >
               Sign Up
             </Button>
+            <div className='text-red-400'>{errorFirebase}</div>
             <div>
               <span>{signUp.footerTip}</span>
               <button className='text-primary ml-2' onClick={handleSwitch}>

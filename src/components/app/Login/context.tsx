@@ -6,11 +6,12 @@ import { auth } from '@/components/app/Login/auth';
 // create a context for the authentication
 const AuthContext = createContext({
   isLoggedIn: false,
+
   login: () => {
     // Perform login logic (e.g., call your authentication API)
     // Set isLoggedIn to true if login is successful
   },
-  signup: (email: string, password: string) => {
+  signup: (email: string, password: string, setErrorFirebase) => {
     // Perform signup logic (e.g., call your authentication API)
     // Set isLoggedIn to true if signup is successful
   },
@@ -27,20 +28,22 @@ export const AuthProvider = ({ children }) => {
     setIsLoggedIn(true);
   };
 
-  const signup = (email: string, password: string) => {
+  const signup = (email: string, password: string, setErrorFirebase: any) => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed up
         const user = userCredential.user;
         console.log('Signed up user:', user);
         // ...
+        setIsLoggedIn(true);
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         // ..
+        // console.log('Error signing up:', errorCode, errorMessage);
+        setErrorFirebase(errorCode);
       });
-    setIsLoggedIn(true);
   };
 
   const logout = () => {
