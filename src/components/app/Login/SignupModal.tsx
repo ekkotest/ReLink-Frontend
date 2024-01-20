@@ -1,6 +1,5 @@
 import {
   Button,
-  Checkbox,
   Input,
   Modal,
   ModalBody,
@@ -50,52 +49,48 @@ export default function LoginModal({
   return (
     <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
       <ModalContent>
-        {(onClose) => (
-          <>
-            <ModalBody>
-              <div className='flex flex-col items-center justify-center gap-4 py-3'>
-                <h1 className='text-3xl font-bold text-stone-900 '>
-                  {signUp.title}
-                </h1>
-                <div className='text-neutral-400'>
-                  Please fill your detail to access your account.
-                </div>
-                <Button
-                  variant='flat'
-                  className='w-full'
-                  onClick={handleGoogle}
-                  startContent={
-                    <Image
-                      src='/svg/common/Google.svg'
-                      width={14}
-                      height={14}
-                      alt=''
-                    />
-                  }
-                >
-                  Continue with Google
-                </Button>
+        <ModalBody>
+          <div className='flex flex-col items-center justify-center gap-4 py-3'>
+            <h1 className='text-3xl font-bold text-stone-900 '>
+              {signUp.title}
+            </h1>
+            <div className='text-neutral-400'>
+              Please fill your detail to access your account.
+            </div>
+            <Button
+              variant='flat'
+              className='w-full'
+              onClick={handleGoogle}
+              startContent={
+                <Image
+                  src='/svg/common/Google.svg'
+                  width={14}
+                  height={14}
+                  alt=''
+                />
+              }
+            >
+              Continue with Google
+            </Button>
 
-                <div className='flex items-center gap-3'>
-                  <div className='h-px w-44 bg-slate-200' />
-                  <span>or</span>
-                  <div className='h-px w-44 bg-slate-200' />
-                </div>
-                {signUp.content}
+            <div className='flex items-center gap-3'>
+              <div className='h-px w-44 bg-slate-200' />
+              <span>or</span>
+              <div className='h-px w-44 bg-slate-200' />
+            </div>
+            {signUp.content}
 
-                <Button color='primary' className='w-full'>
-                  Sign In
-                </Button>
-                <div>
-                  <span>{signUp.footerTip}</span>
-                  <span className='text-primary ml-2' onClick={handleSwitch}>
-                    {signUp.switch}
-                  </span>
-                </div>
-              </div>
-            </ModalBody>
-          </>
-        )}
+            <Button color='primary' className='w-full'>
+              Sign In
+            </Button>
+            <div>
+              <span>{signUp.footerTip}</span>
+              <span className='text-primary ml-2' onClick={handleSwitch}>
+                {signUp.switch}
+              </span>
+            </div>
+          </div>
+        </ModalBody>
       </ModalContent>
     </Modal>
   );
