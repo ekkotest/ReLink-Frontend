@@ -24,7 +24,7 @@ function SignUp() {
   );
 }
 const signUp = {
-  title: 'Sign upn',
+  title: 'Sign up',
   content: <SignUp></SignUp>,
   footerTip: 'Already have an account? ',
   switch: 'Login In',
@@ -54,7 +54,7 @@ export default function SignupModal() {
     <Modal isOpen={isSignupOpen} onOpenChange={onSignupOpenChange}>
       <ModalContent>
         <ModalBody>
-          <div className='flex flex-col items-center justify-center gap-4 py-3'>
+          <div className='flex flex-col items-center justify-center gap-4 p-3'>
             <h1 className='text-3xl font-bold text-stone-900 '>
               {signUp.title}
             </h1>
@@ -62,7 +62,7 @@ export default function SignupModal() {
               Please fill your detail to access your account.
             </div>
             <Button
-              variant='flat'
+              variant='bordered'
               className='w-full'
               onClick={handleGoogle}
               startContent={
@@ -89,9 +89,9 @@ export default function SignupModal() {
             </Button>
             <div>
               <span>{signUp.footerTip}</span>
-              <span className='text-primary ml-2' onClick={handleSwitch}>
+              <button className='text-primary ml-2' onClick={handleSwitch}>
                 {signUp.switch}
-              </span>
+              </button>
             </div>
           </div>
         </ModalBody>

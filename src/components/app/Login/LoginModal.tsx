@@ -14,18 +14,18 @@ import { useLoginModal, useSignupModal } from '@/components/app/Login/context';
 function Login() {
   return (
     <>
-      <Input type='email' label='Email Address' />
-      <Input type='email' label='Password' />
+      <Input type='email' variant='bordered' label='Email Address' />
+      <Input type='email' variant='bordered' label='Password' />
       <div className='flex w-full justify-between'>
-        <Checkbox defaultSelected>Remember me</Checkbox>
-        <div>Forgot Password?</div>
+        <Checkbox>Remember me</Checkbox>
+        <button className='text-primary'>Forgot Password?</button>
       </div>
     </>
   );
 }
 
 const loginIn = {
-  title: 'Login In',
+  title: 'Log In',
   content: <Login></Login>,
   footerTip: "Don't have an account?",
   switch: 'Sign up',
@@ -51,7 +51,7 @@ export default function LoginModal() {
         {(onClose) => (
           <>
             <ModalBody>
-              <div className='flex flex-col items-center justify-center gap-4 py-3'>
+              <div className='flex flex-col items-center justify-center gap-4 p-3'>
                 <h1 className='text-3xl font-bold text-stone-900 '>
                   {loginIn.title}
                 </h1>
@@ -59,7 +59,7 @@ export default function LoginModal() {
                   Please fill your detail to access your account.
                 </div>
                 <Button
-                  variant='flat'
+                  variant='bordered'
                   className='w-full'
                   onClick={handleGoogle}
                   startContent={
@@ -86,9 +86,9 @@ export default function LoginModal() {
                 </Button>
                 <div>
                   <span>{loginIn.footerTip}</span>
-                  <span className='text-primary ml-2' onClick={hanldeSwitch}>
+                  <button className='text-primary ml-2' onClick={hanldeSwitch}>
                     {loginIn.switch}
-                  </span>
+                  </button>
                 </div>
               </div>
             </ModalBody>

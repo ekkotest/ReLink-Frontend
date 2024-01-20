@@ -3,6 +3,6 @@
 @tailwind utilities;
 
 :root {
-  font-family: Public Sans;
+  /* font-family: Public Sans; */
   font-size: 14px;
 }

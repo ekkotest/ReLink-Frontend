@@ -160,7 +160,6 @@ export default function Example() {
             }}
           />
         </div> */}
-        S
       </div>
     </div>
   );
