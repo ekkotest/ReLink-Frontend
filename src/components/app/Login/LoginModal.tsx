@@ -15,7 +15,7 @@ function Login() {
   return (
     <>
       <Input type='email' variant='bordered' label='Email Address' />
-      <Input type='email' variant='bordered' label='Password' />
+      <Input type='password' variant='bordered' label='Password' />
       <div className='flex w-full justify-between'>
         <Checkbox>Remember me</Checkbox>
         <button className='text-primary'>Forgot Password?</button>

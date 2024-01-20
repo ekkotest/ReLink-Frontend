@@ -14,12 +14,12 @@ function SignUp() {
   return (
     <>
       <div className='flex justify-between gap-3'>
-        <Input type='email' label='Email Address' />
-        <Input type='email' label='Password' />
+        <Input type='text' variant='bordered' label='First Name' />
+        <Input type='text' variant='bordered' label='Last Name' />
       </div>
-      <Input type='email' label='Password' />
-      <Input type='email' label='Password' />
-      <Input type='email' label='Password' />
+      <Input type='email' variant='bordered' label='Email Address' />
+      <Input type='password' variant='bordered' label='Choose Password' />
+      <Input type='password' variant='bordered' label='Confirm Password' />
     </>
   );
 }
@@ -74,7 +74,7 @@ export default function SignupModal() {
                 />
               }
             >
-              Continue with Google
+              Sign Up with Google
             </Button>
 
             <div className='flex items-center gap-3'>
@@ -85,7 +85,7 @@ export default function SignupModal() {
             {signUp.content}
 
             <Button color='primary' className='w-full'>
-              Sign In
+              Sign Up
             </Button>
             <div>
               <span>{signUp.footerTip}</span>
