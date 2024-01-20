@@ -17,7 +17,7 @@ import {
 const signUp = {
   title: 'Sign up',
   footerTip: 'Already have an account? ',
-  switch: 'Login In',
+  switch: 'Log In',
 };
 
 const validateEmail = (value: string) =>
