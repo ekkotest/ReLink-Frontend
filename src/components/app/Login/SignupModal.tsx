@@ -6,7 +6,7 @@ import {
   ModalContent,
 } from '@nextui-org/react';
 import Image from 'next/image';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import {
   useAuth,
@@ -25,12 +25,17 @@ const validateEmail = (value: string) =>
 const validatePassword = (value: string) => value.length > 6;
 
 export default function SignupModal() {
-  const handleGoogle = () => {
-    // signIn('google');
-    // signOut();
-  };
+  const { signup, signupWithGoogle, isLoggedIn } = useAuth();
 
-  const { signup } = useAuth();
+  useEffect(() => {
+    if (isLoggedIn) {
+      onSignupOpenChange();
+    }
+  }, [isLoggedIn]);
+
+  const handleGoogleSignup = () => {
+    signupWithGoogle();
+  };
 
   const handleSignup = () => {
     signup(email, password, setErrorFirebase);
@@ -91,7 +96,7 @@ export default function SignupModal() {
             <Button
               variant='bordered'
               className='w-full'
-              onClick={handleGoogle}
+              onClick={handleGoogleSignup}
               startContent={
                 <Image
                   src='/svg/common/Google.svg'

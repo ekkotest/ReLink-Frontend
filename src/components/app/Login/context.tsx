@@ -1,4 +1,8 @@
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import {
+  createUserWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from 'firebase/auth';
 import { createContext, useContext, useState } from 'react';
 
 import { auth } from '@/components/app/Login/auth';
@@ -12,6 +16,10 @@ const AuthContext = createContext({
     // Set isLoggedIn to true if login is successful
   },
   signup: (email: string, password: string, setErrorFirebase) => {
+    // Perform signup logic (e.g., call your authentication API)
+    // Set isLoggedIn to true if signup is successful
+  },
+  signupWithGoogle: () => {
     // Perform signup logic (e.g., call your authentication API)
     // Set isLoggedIn to true if signup is successful
   },
@@ -46,12 +54,40 @@ export const AuthProvider = ({ children }) => {
       });
   };
 
+  const signupWithGoogle = () => {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential?.accessToken;
+        // The signed-in user info.
+        const user = result.user;
+        // IdP data available using getAdditionalUserInfo(result)
+        // ...
+        console.log('user', user);
+        setIsLoggedIn(true);
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        // ...
+      });
+  };
+
   const logout = () => {
     setIsLoggedIn(false);
   };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, login, signup, logout }}>
+    <AuthContext.Provider
+      value={{ isLoggedIn, login, signup, signupWithGoogle, logout }}
+    >
       {children}
     </AuthContext.Provider>
   );
