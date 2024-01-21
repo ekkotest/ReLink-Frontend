@@ -1,5 +1,9 @@
-import { TableColumnInterface } from '@/components/app/graph/TableView/interfaces';
-import TableItem from '@/components/app/graph/TableView/TableItem';
+import PropNode, { PropNodeDetail } from '@/components/app/shared/PropNode';
+
+export interface TableColumnInterface {
+  title: string;
+  items: PropNodeDetail[];
+}
 
 export default function TableColumn({
   tableColumn,
@@ -28,7 +32,7 @@ export default function TableColumn({
       {/* Items start */}
       <div className='flex w-full flex-col items-center'>
         {tableColumn.items.map((item, i) => (
-          <TableItem key={i} />
+          <PropNode key={i} detail={item} />
         ))}
       </div>
 
