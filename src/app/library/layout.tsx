@@ -3,15 +3,19 @@ import { Tab, Tabs } from '@nextui-org/react';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
+const getTabKey = (path: string) => {
+  const segments = path.split('/');
+  return segments[segments.length - 1];
+};
+
 export default function Layout({ children }: { children: React.ReactNode }) {
-  const [selected, setSelected] = useState('propositions');
   const router = useRouter();
   const path = usePathname();
 
+  const [selected, setSelected] = useState(getTabKey(path));
+
   useEffect(() => {
-    const segments = path.split('/');
-    const tabKey = segments[segments.length - 1];
-    setSelected(tabKey);
+    setSelected(getTabKey(path));
   }, [path]);
 
   const onTabSelected = (key: React.Key) => {
@@ -20,22 +24,22 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <div className='px-12 py-12 '>
+    <div className='px-12 py-12'>
       <h1 className='text-2xl font-bold leading-loose  text-neutral-800'>
         Library
       </h1>
-      <div className='flex w-full flex-col'>
-        <Tabs
-          variant='underlined'
-          aria-label='Options'
-          selectedKey={selected}
-          onSelectionChange={onTabSelected}
-        >
-          <Tab key='propositions' title='Propositions'></Tab>
-          <Tab key='pdfs' title='PDFs'></Tab>
-        </Tabs>
-      </div>
-      <div>{children}</div>
+      <Tabs
+        className='-ml-4 mb-8'
+        color='primary'
+        variant='underlined'
+        aria-label='Options'
+        selectedKey={selected}
+        onSelectionChange={onTabSelected}
+      >
+        <Tab key='propositions' title='Propositions'></Tab>
+        <Tab key='pdfs' title='PDFs'></Tab>
+      </Tabs>
+      {children}
     </div>
   );
 }
