@@ -81,7 +81,7 @@ export default function LoginModal({
                 </Button>
                 <div>
                   <span>{renderData.footerTip}</span>
-                  <span className='ml-2 text-primary' onClick={hanldeSwitch}>
+                  <span className='text-primary ml-2' onClick={hanldeSwitch}>
                     {renderData.switch}
                   </span>
                 </div>
