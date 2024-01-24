@@ -1,8 +1,8 @@
 import { FaInstagram, FaSquareFacebook, FaTwitter } from 'react-icons/fa6';
 
-export default function Example() {
+export default function Footer() {
   return (
-    <div className='Frame39643 inline-flex  items-center justify-start gap-96 p-6'>
+    <div className='Frame39643 flex  items-center   p-6'>
       <div className="2023RelinkIncAllRightsReservedLegalInformation font-['Public Sans']  text-xs font-normal leading-tight text-neutral-800">
         © 2023 Relink,Inc. All rights reserved. Legal information
       </div>
