@@ -17,7 +17,7 @@ export default function TableColumn({
         <div className='inline-flex items-center justify-center py-2.5'>
           <div className='inline-flex flex-col items-start justify-start'>
             <div className='flex w-24 flex-col items-start justify-center gap-2.5 rounded bg-rose-50 bg-opacity-0 px-2 py-px'>
-              <div className="font-['Public Sans'] text-sm font-medium leading-snug text-neutral-800">
+              <div className='text-sm font-medium leading-snug text-neutral-800'>
                 {tableColumn.title}
               </div>
             </div>
@@ -30,7 +30,7 @@ export default function TableColumn({
       {/* Title end*/}
 
       {/* Items start */}
-      <div className='flex w-full flex-col items-center'>
+      <div className='flex w-full flex-col items-center gap-2.5'>
         {tableColumn.items.map((item, i) => (
           <PropNode key={i} detail={item} />
         ))}

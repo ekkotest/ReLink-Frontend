@@ -18,7 +18,7 @@ const generateTestData = (num) => {
 };
 
 export default async function Page() {
-  const temp = generateTestData(12);
+  const temp = generateTestData(25);
   return (
     <div className='flex h-full w-full flex-row flex-wrap gap-10'>
       {temp.map((t, i) => (

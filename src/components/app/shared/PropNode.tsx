@@ -31,7 +31,7 @@ export default function PropNode({ detail }: { detail: PropNodeDetail }) {
       onMouseLeave={handleMouseLeave}
       className={`${
         isHovered && 'border-primary'
-      } mb-2.5 inline-flex h-36 w-56 flex-col items-start justify-start gap-3  rounded-lg border bg-white px-3.5 py-4`}
+      } inline-flex w-[17rem] flex-col items-start justify-start gap-3  rounded-lg border bg-white px-3.5 py-4`}
     >
       <div className='flex w-full items-center justify-between'>
         <div className=' rounded bg-lime-50 px-2 py-2 text-xs  text-lime-600 '>

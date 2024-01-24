@@ -32,6 +32,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         className='-ml-4 mb-8'
         color='primary'
         variant='underlined'
+        size='lg'
         aria-label='Options'
         selectedKey={selected}
         onSelectionChange={onTabSelected}
