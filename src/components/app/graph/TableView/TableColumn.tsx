@@ -30,7 +30,7 @@ export default function TableColumn({
       {/* Title end*/}
 
       {/* Items start */}
-      <div className='flex w-full flex-col items-center gap-2.5'>
+      <div className='flex w-full flex-col items-center gap-2.5 px-4'>
         {tableColumn.items.map((item, i) => (
           <PropNode key={i} detail={item} />
         ))}
