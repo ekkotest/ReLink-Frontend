@@ -1,4 +1,5 @@
 'use client';
+import clsx from 'clsx';
 import Image from 'next/image';
 import { useState } from 'react';
 
@@ -34,7 +35,14 @@ export default function PropNode({ detail }: { detail: PropNodeDetail }) {
       } inline-flex max-w-[17rem] flex-col items-start justify-start gap-3  rounded-lg border bg-white px-3.5 py-4`}
     >
       <div className='flex w-full items-center justify-between'>
-        <div className=' rounded bg-lime-50 px-2 py-2 text-xs  text-lime-600 '>
+        <div
+          className={clsx('rounded px-2 py-2 text-xs', {
+            'bg-lime-50 text-lime-600': detail.title === 'Experiment',
+            'bg-rose-50 text-red-600': detail.title === 'Hypothesis',
+            'bg-yellow-50 text-amber-500': detail.title === 'Observation',
+            'bg-sky-100 text-sky-500': detail.title === 'Case Study',
+          })}
+        >
           {detail.title}
         </div>
         <div className='flex items-center gap-1'>
