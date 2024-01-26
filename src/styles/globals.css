@@ -6,3 +6,9 @@
   /* font-family: Public Sans; */
   font-size: 14px;
 }
+
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}

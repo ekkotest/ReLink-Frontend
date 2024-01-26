@@ -45,6 +45,16 @@ const nextConfig = {
 
     return config;
   },
+
+  async redirects() {
+    return [
+      {
+        source: '/library',
+        destination: '/library/propositions',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
