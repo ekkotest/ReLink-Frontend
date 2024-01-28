@@ -8,6 +8,7 @@ import {
   DropdownTrigger,
 } from '@nextui-org/react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useState } from 'react';
 
 import { auth } from '@/components/app/Login/auth';
@@ -53,7 +54,7 @@ export default function Example() {
           className='flex h-[80px] w-full items-center justify-between  px-12   '
           aria-label='Global'
         >
-          <div className='flex lg:flex-1'>
+          <Link href='/' className='flex lg:flex-1'>
             <Image
               src='/svg/header/relink.svg'
               width={30}
@@ -61,7 +62,7 @@ export default function Example() {
               alt=''
             ></Image>
             <span className='ml-4 '>RELINK</span>
-          </div>
+          </Link>
           <div className='flex lg:hidden'>
             <button
               type='button'
