@@ -22,14 +22,11 @@ export async function postFileUpload(data: FormData, onprogress, abortCb) {
       }
     };
     xhr.send(data);
-
     abortCb(xhr);
     xhr.onload = function (res) {
       resolve(res);
     };
     xhr.onabort = function (err) {
-      console.log(err);
-
       reject(err);
     };
     xhr.onerror = function (err) {
