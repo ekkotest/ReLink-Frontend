@@ -115,7 +115,7 @@ export default function Example() {
                         Setting & Privacy
                       </DropdownItem>
                       <DropdownItem key='help_and_feedback'>
-                        Help & Support
+                        <Link href='/contact'> Help & Support</Link>
                       </DropdownItem>
                       <DropdownItem
                         key='logout'
