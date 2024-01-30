@@ -11,7 +11,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 
-import { auth } from '@/components/app/Login/auth';
 import {
   useAuth,
   useLoginModal,
@@ -37,16 +36,9 @@ export default function Example() {
   const handleSignup = () => {
     onOpenSignup();
   };
+  const { currentUser, login, signup, logout } = useAuth();
 
-  const { isLoggedIn, login, signup, logout } = useAuth();
-
-  const handleAvatar = () => {
-    if (auth.currentUser?.photoURL) {
-      return auth.currentUser?.photoURL;
-    } else {
-      return '/svg/header/female.svg';
-    }
-  };
+  const photoURL = currentUser?.photoURL || '/svg/header/female.svg';
   return (
     <div>
       <header className='fixed inset-x-0 top-0 z-50 border-b shadow  backdrop-blur '>
@@ -85,7 +77,7 @@ export default function Example() {
                 ></Image>
               ))}
               <div className='flex items-center gap-2'>
-                {isLoggedIn ? (
+                {currentUser ? (
                   <Dropdown placement='bottom-end'>
                     <DropdownTrigger>
                       <div className='flex items-center gap-2'>
@@ -94,9 +86,9 @@ export default function Example() {
                           className='transition-transform'
                           name='Jason Hughes'
                           size='sm'
-                          src={handleAvatar()}
+                          src={photoURL}
                         />
-                        {auth.currentUser?.displayName}
+                        {currentUser?.displayName}
                       </div>
                     </DropdownTrigger>
                     <DropdownMenu
@@ -105,7 +97,7 @@ export default function Example() {
                       disabledKeys={['profile']}
                     >
                       <DropdownItem key='profile' className='h-14 gap-2'>
-                        {auth.currentUser?.email}
+                        {currentUser?.email}
                       </DropdownItem>
                       <DropdownItem key='settings'>My Saves</DropdownItem>
                       <DropdownItem key='team_settings'>
