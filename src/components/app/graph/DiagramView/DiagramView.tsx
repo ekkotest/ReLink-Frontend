@@ -126,9 +126,7 @@ export default function LayoutFlow() {
         onEdgesChange={onEdgesChange}
         fitView
       ></ReactFlow>
-      <div className='absolute -top-12 right-0 z-10'>
-        {selectedNodes && <DiagramDetail></DiagramDetail>}
-      </div>
+      {selectedNodes && <DiagramDetail></DiagramDetail>}
     </div>
   );
 }

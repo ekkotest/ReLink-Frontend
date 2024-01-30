@@ -4,7 +4,7 @@ import { useState } from 'react';
 export default function App() {
   const [selectedKeys, setSelectedKeys] = useState<Selection>(new Set(['2']));
   const itemClasses = {
-    base: 'py-0 w-full',
+    // base: 'py-0 w-full',
     // title: 'font-normal text-medium',
     // trigger:
     //   'px-2 py-0 data-[hover=true]:bg-default-100 rounded-lg h-14 flex items-center',
@@ -54,29 +54,26 @@ export default function App() {
     },
   ];
   return (
-    <div className='bg-'>
-      {' '}
-      <Accordion
-        selectedKeys={selectedKeys}
-        onSelectionChange={setSelectedKeys}
-        isCompact
-        itemClasses={itemClasses}
-        showDivider={false}
-        className='flex w-full max-w-[472px] flex-col gap-1 p-2'
-        variant='splitted'
-      >
-        {AccordionContent.map((it) => (
-          <AccordionItem
-            key={it.key}
-            isCompact
-            startContent={it.startContent}
-            title={<div className='w-[430px]'>{it.title}</div>}
-          >
-            {it.content}
-          </AccordionItem>
-        ))}
-      </Accordion>
-    </div>
+    <Accordion
+      selectedKeys={selectedKeys}
+      onSelectionChange={setSelectedKeys}
+      isCompact
+      itemClasses={itemClasses}
+      showDivider={false}
+      className=' max-w-[470px] absolute bottom-0 right-0 z-10'
+      variant='splitted'
+    >
+      {AccordionContent.map((it) => (
+        <AccordionItem
+          key={it.key}
+          isCompact
+          startContent={it.startContent}
+          title={it.title}
+        >
+          {it.content}
+        </AccordionItem>
+      ))}
+    </Accordion>
   );
 }
 

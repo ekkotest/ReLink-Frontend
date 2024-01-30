@@ -3,7 +3,7 @@ import * as React from 'react';
 
 import '@/styles/colors.css';
 
-import NavBar from '@/components/app/NavBar';
+import Sidebar from '@/components/app/graph/layout/Sidebar';
 
 export const metadata: Metadata = {
   title: 'Components',
@@ -17,7 +17,7 @@ export default function ComponentsLayout({
 }) {
   return (
     <div className='m-t-[180px] flex'>
-      <NavBar></NavBar>
+      <Sidebar></Sidebar>
       {children}
     </div>
   );
