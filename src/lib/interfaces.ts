@@ -1,4 +1,8 @@
-import { Proposition, UploadPdfResponse } from '@/api/response.interfaces';
+import {
+  GetPropositionsResponse,
+  Proposition,
+  UploadFileResponse,
+} from '@/api/response.interfaces';
 
 // Actions
 export enum DataAction {
@@ -13,25 +17,28 @@ export enum DataAction {
 
 export interface PdfPropDataAction {
   type: DataAction;
-  response: UploadPdfResponse | any;
+  response: UploadFileResponse | GetPropositionsResponse | any;
 }
 
 export class PdfPropData {
   pdfFileNames: string[];
-  pdfFileNameToIdMap: Map<string, string>;
+  pdfIdToFileNameMap: Map<string, string>;
   pdfIdToPropsMap: Map<string, Proposition[]>;
+  propIdToIsSavedMap: Map<string, boolean>;
   loading: boolean;
 
   constructor(data?: PdfPropData) {
     if (data instanceof PdfPropData) {
       this.pdfFileNames = data.pdfFileNames;
-      this.pdfFileNameToIdMap = data.pdfFileNameToIdMap;
+      this.pdfIdToFileNameMap = data.pdfIdToFileNameMap;
       this.pdfIdToPropsMap = data.pdfIdToPropsMap;
+      this.propIdToIsSavedMap = data.propIdToIsSavedMap;
       this.loading = data.loading;
     } else {
       this.pdfFileNames = [];
-      this.pdfFileNameToIdMap = new Map<string, string>();
+      this.pdfIdToFileNameMap = new Map<string, string>();
       this.pdfIdToPropsMap = new Map<string, Proposition[]>();
+      this.propIdToIsSavedMap = new Map<string, boolean>();
       this.loading = false;
     }
   }
