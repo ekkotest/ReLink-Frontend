@@ -3,15 +3,16 @@ import { createContext, Dispatch, useContext, useReducer } from 'react';
 import { DataAction, PdfPropData, PdfPropDataAction } from '@/lib/interfaces';
 
 import {
+  GetLibraryPropositionsResponse,
   GetPropositionsResponse,
   PdfPropositionResponse,
   UploadFileResponse,
-} from '@/api/response.interfaces';
+} from '@/app/api/proposition/response.interfaces';
 
 // Contexts
-export const DataContext = createContext({});
+export const DataContext = createContext(new PdfPropData());
 export const DataDispatchContext = createContext(
-  (() => undefined) as Dispatch<any>
+  (() => undefined) as Dispatch<PdfPropDataAction>
 );
 
 export function useData() {
@@ -24,7 +25,7 @@ export function useDataDispatch() {
 
 // Context Providers
 export function DataProvider({ children }) {
-  const [data, dispatch] = useReducer(dataReducer, initialData);
+  const [data, dispatch] = useReducer(dataReducer, new PdfPropData());
 
   return (
     <DataContext.Provider value={data}>
@@ -62,6 +63,15 @@ function dataReducer(data: PdfPropData, action: PdfPropDataAction) {
     }
 
     // Propositions
+    case DataAction.GET_LIB_PROPOSITION: {
+      const output: GetLibraryPropositionsResponse = action.response;
+      // propositions: [{proposition_id ,proposition_type, description, is_saved}]
+      output.propositions.forEach((p) => {
+        data.propIdToPropMap.set(p.proposition_id, p);
+      });
+      return new PdfPropData(data);
+    }
+
     case DataAction.GET_PDF_PROPOSITION: {
       const output: GetPropositionsResponse = action.response;
       // {propositions: [{proposition_id , pdf_id, proposition_type, description, is_saved}]}
@@ -79,6 +89,3 @@ function dataReducer(data: PdfPropData, action: PdfPropDataAction) {
     }
   }
 }
-
-// Initial Data
-const initialData = new PdfPropData();

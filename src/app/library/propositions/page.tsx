@@ -1,27 +1,35 @@
-import PropNode, { PropNodeDetail } from '@/components/app/shared/PropNode';
+'use client';
 
-const generateTestData = (num) => {
-  const res: PropNodeDetail[] = [];
-  const titles = ['Hypothesis', 'Case Study', 'Observation', 'Experiment'];
-  for (let i = 0; i < num; i++) {
-    const temp = Math.floor(Math.random() * 4);
-    res.push({
-      title: titles[temp],
-      mode: 'graph',
-      isSaved: true,
-      content:
-        'The degradation problem in plain networks, where deeper networks have higher training error, is attributed to optimization difficulties rather than vanishing gradients.',
-    });
-  }
+import { useEffect } from 'react';
 
-  return res;
-};
+import { useData, useDataDispatch } from '@/lib/context/data.context';
+import { DataAction } from '@/lib/interfaces';
 
-export default async function Page() {
-  const temp = generateTestData(25);
+import PropNode from '@/components/app/shared/PropNode';
+
+export default function Page() {
+  const data = useData();
+  const dispatch = useDataDispatch();
+
+  useEffect(() => {
+    fetch('/api/proposition/get-library-proposition')
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((res) => {
+        dispatch({
+          type: DataAction.GET_LIB_PROPOSITION,
+          response: res,
+        });
+      });
+  }, []);
+
   return (
     <div className='flex h-full w-full flex-row flex-wrap gap-10'>
-      {temp.map((t, i) => (
+      {data.generatePropNodes('graph').map((t, i) => (
         <PropNode key={i} detail={t} />
       ))}
     </div>
