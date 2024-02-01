@@ -4,7 +4,7 @@ import { DataAction, PdfPropData, PdfPropDataAction } from '@/lib/interfaces';
 
 import {
   GetPropositionsResponse,
-  Proposition,
+  PdfPropositionResponse,
   UploadFileResponse,
 } from '@/api/response.interfaces';
 
@@ -41,13 +41,20 @@ function dataReducer(data: PdfPropData, action: PdfPropDataAction) {
     // PDF
     case DataAction.UPLOAD_PDF: {
       const output: UploadFileResponse = action.response;
+      // {pdf_file_name: {pdf_id, propositions: [{proposition_id ,proposition_type, description}]}}
       for (const p in output) {
-        // {pdf_file_name: {pdf_id, propositions: [{proposition_id ,proposition_type, description}]}}
-        data.pdfFileNames.push(p);
         data.pdfIdToFileNameMap.set(output[p].pdf_id, p);
-        data.pdfIdToPropsMap.set(output[p].pdf_id, output[p].propositions);
+        data.pdfIdToPropIdsMap.set(output[p].pdf_id, new Set());
         output[p].propositions.forEach((prop) => {
-          data.propIdToIsSavedMap.set(prop.proposition_id, false);
+          const temp: PdfPropositionResponse = {
+            ...prop,
+            is_saved: false,
+            pdf_id: output[p].pdf_id,
+          };
+          data.pdfIdToPropIdsMap
+            .get(output[p].pdf_id)
+            ?.add(prop.proposition_id);
+          data.propIdToPropMap.set(prop.proposition_id, temp);
         });
       }
 
@@ -57,16 +64,13 @@ function dataReducer(data: PdfPropData, action: PdfPropDataAction) {
     // Propositions
     case DataAction.GET_PDF_PROPOSITION: {
       const output: GetPropositionsResponse = action.response;
-      const props: Proposition[] = [];
+      // {propositions: [{proposition_id , pdf_id, proposition_type, description, is_saved}]}
+      const set = new Set<string>();
       output.propositions.forEach((p) => {
-        data.propIdToIsSavedMap.set(p.proposition_id, p.is_saved);
-        props.push({
-          proposition_id: p.proposition_id,
-          proposition_type: p.proposition_type,
-          description: p.description,
-        });
+        set.add(p.proposition_id);
+        data.propIdToPropMap.set(p.proposition_id, p);
       });
-      data.pdfIdToPropsMap.set(output.propositions[0].pdf_id, props);
+      data.pdfIdToPropIdsMap.set(output.propositions[0].pdf_id, set);
 
       return new PdfPropData(data);
     }

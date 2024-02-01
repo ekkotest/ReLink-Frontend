@@ -1,21 +1,21 @@
-export interface Proposition {
+export interface PropositionResponse {
   proposition_id: string;
   proposition_type: string;
   description: string;
 }
-export interface PdfProposition extends Proposition {
+export interface PdfPropositionResponse extends PropositionResponse {
   pdf_id: string;
   is_saved: boolean;
 }
-export interface PdfData {
+export interface PdfDataResponse {
   pdf_id: string;
-  propositions: Proposition[];
+  propositions: PropositionResponse[];
 }
 
 export type UploadFileResponse = {
-  [key: string]: PdfData;
+  [key: string]: PdfDataResponse;
 };
 
 export type GetPropositionsResponse = {
-  propositions: PdfProposition[];
+  propositions: PdfPropositionResponse[];
 };

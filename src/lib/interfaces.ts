@@ -1,6 +1,6 @@
 import {
   GetPropositionsResponse,
-  Proposition,
+  PdfPropositionResponse,
   UploadFileResponse,
 } from '@/api/response.interfaces';
 
@@ -21,29 +21,22 @@ export interface PdfPropDataAction {
 }
 
 export class PdfPropData {
-  pdfFileNames: string[];
   pdfIdToFileNameMap: Map<string, string>;
-  pdfIdToPropsMap: Map<string, Proposition[]>;
-  propIdToIsSavedMap: Map<string, boolean>;
+  pdfIdToPropIdsMap: Map<string, Set<string>>;
+  propIdToPropMap: Map<string, PdfPropositionResponse>;
   loading: boolean;
 
   constructor(data?: PdfPropData) {
     if (data instanceof PdfPropData) {
-      this.pdfFileNames = data.pdfFileNames;
       this.pdfIdToFileNameMap = data.pdfIdToFileNameMap;
-      this.pdfIdToPropsMap = data.pdfIdToPropsMap;
-      this.propIdToIsSavedMap = data.propIdToIsSavedMap;
+      this.pdfIdToPropIdsMap = data.pdfIdToPropIdsMap;
+      this.propIdToPropMap = data.propIdToPropMap;
       this.loading = data.loading;
     } else {
-      this.pdfFileNames = [];
       this.pdfIdToFileNameMap = new Map<string, string>();
-      this.pdfIdToPropsMap = new Map<string, Proposition[]>();
-      this.propIdToIsSavedMap = new Map<string, boolean>();
+      this.pdfIdToPropIdsMap = new Map<string, Set<string>>();
+      this.propIdToPropMap = new Map<string, PdfPropositionResponse>();
       this.loading = false;
     }
-  }
-
-  getPdfProps(pdfId: string) {
-    return this.pdfIdToPropsMap.get(pdfId);
   }
 }
