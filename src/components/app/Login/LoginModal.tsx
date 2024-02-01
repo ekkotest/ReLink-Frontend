@@ -23,7 +23,7 @@ const loginIn = {
 };
 
 export default function LoginModal() {
-  const { signupWithGoogle, isLoggedIn, login } = useAuth();
+  const { signupWithGoogle, currentUser, login } = useAuth();
 
   const { isOpen: isLoginOpen, onOpenChange: onLoginOpenChange } =
     useLoginModal();
@@ -35,10 +35,10 @@ export default function LoginModal() {
   const [errorFirebase, setErrorFirebase] = React.useState('');
 
   useEffect(() => {
-    if (isLoggedIn) {
+    if (currentUser) {
       onLoginOpenChange();
     }
-  }, [isLoggedIn]);
+  }, [currentUser]);
 
   const handleGoogle = () => {
     signupWithGoogle();

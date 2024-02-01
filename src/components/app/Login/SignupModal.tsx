@@ -25,7 +25,7 @@ const validateEmail = (value: string) =>
 const validatePassword = (value: string) => value.length > 6;
 
 export default function SignupModal() {
-  const { signup, signupWithGoogle, isLoggedIn } = useAuth();
+  const { signup, signupWithGoogle, currentUser } = useAuth();
 
   const {
     isOpen: isLoginOpen,
@@ -64,10 +64,10 @@ export default function SignupModal() {
   }, [confirmPassword, password]);
 
   useEffect(() => {
-    if (isLoggedIn) {
+    if (currentUser) {
       onSignupOpenChange();
     }
-  }, [isLoggedIn]);
+  }, [currentUser]);
 
   const handleGoogleSignup = () => {
     signupWithGoogle();
