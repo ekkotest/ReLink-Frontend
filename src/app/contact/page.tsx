@@ -39,7 +39,7 @@ export default function Contact() {
           input: 'resize-y min-h-[40px]',
         }}
       />
-      <div className='flex justify-between gap-10 w-1/2 -mt-8'>
+      <div className='flex justify-between gap-10 w-1/2 -mt-4'>
         <Input
           type='email'
           variant='bordered'

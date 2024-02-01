@@ -3,35 +3,33 @@ import {
   GoogleAuthProvider,
   signInWithEmailAndPassword,
   signInWithPopup,
+  User,
 } from 'firebase/auth';
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 
 import { auth } from '@/components/app/Login/auth';
-
 // create a context for the authentication
-const AuthContext = createContext({
-  isLoggedIn: false,
+const AuthContext = createContext<{
+  currentUser: User | null;
+  login: (email: string, password: string, setErrorFirebase) => void;
+  // Perform login logic (e.g., call your authentication API)
+  // Set isLoggedIn to true if login is successful
 
-  login: (email: string, password: string, setErrorFirebase) => {
-    // Perform login logic (e.g., call your authentication API)
-    // Set isLoggedIn to true if login is successful
-  },
-  signup: (email: string, password: string, setErrorFirebase) => {
-    // Perform signup logic (e.g., call your authentication API)
-    // Set isLoggedIn to true if signup is successful
-  },
-  signupWithGoogle: () => {
-    // Perform signup logic (e.g., call your authentication API)
-    // Set isLoggedIn to true if signup is successful
-  },
-  logout: () => {
-    // Perform logout logic (e.g., clear authentication token)
-    // Set isLoggedIn to false
-  },
-});
+  signup: (email: string, password: string, setErrorFirebase) => void;
+  // Perform signup logic (e.g., call your authentication API)
+  // Set isLoggedIn to true if signup is successful
+
+  signupWithGoogle: () => void;
+  // Perform signup logic (e.g., call your authentication API)
+  // Set isLoggedIn to true if signup is successful
+
+  logout: () => void;
+  // Perform logout logic (e.g., clear authentication token)
+  // Set isLoggedIn to false
+}>({} as never);
 
 export const AuthProvider = ({ children }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
 
   const login = (email: string, password: string, setErrorFirebase: any) => {
     signInWithEmailAndPassword(auth, email, password)
@@ -39,7 +37,6 @@ export const AuthProvider = ({ children }) => {
         // Signed in
         const user = userCredential.user;
         // ...
-        setIsLoggedIn(true);
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -55,7 +52,6 @@ export const AuthProvider = ({ children }) => {
         const user = userCredential.user;
         // console.log('Signed up user:', user);
         // ...
-        setIsLoggedIn(true);
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -78,7 +74,6 @@ export const AuthProvider = ({ children }) => {
         // IdP data available using getAdditionalUserInfo(result)
         // ...
         console.log('user', user);
-        setIsLoggedIn(true);
       })
       .catch((error) => {
         // Handle Errors here.
@@ -93,12 +88,25 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
-    setIsLoggedIn(false);
+    auth.signOut();
   };
+  //The user that is not immediately available on refresh the page
+  useEffect(() => {
+    const unregisterAuthObserver = auth.onAuthStateChanged((user) => {
+      setCurrentUser(user);
+    });
+    return () => unregisterAuthObserver();
+  }, []);
 
   return (
     <AuthContext.Provider
-      value={{ isLoggedIn, login, signup, signupWithGoogle, logout }}
+      value={{
+        currentUser,
+        login,
+        signup,
+        signupWithGoogle,
+        logout,
+      }}
     >
       {children}
     </AuthContext.Provider>
