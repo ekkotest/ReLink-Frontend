@@ -3,6 +3,8 @@
 
 import { NextUIProvider } from '@nextui-org/react';
 
+import { DataProvider } from '@/lib/context/data.context';
+
 import {
   AuthProvider,
   LoginModalProvider,
@@ -14,7 +16,9 @@ export default function Providers({ children }: { children: React.ReactNode }) {
     <NextUIProvider>
       <AuthProvider>
         <LoginModalProvider>
-          <SignupModalProvider>{children}</SignupModalProvider>
+          <SignupModalProvider>
+            <DataProvider>{children}</DataProvider>
+          </SignupModalProvider>
         </LoginModalProvider>
       </AuthProvider>
     </NextUIProvider>
